@@ -36,6 +36,8 @@ import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminKycRouteImport } from './routes/admin.kyc'
+import { Route as AdminDiagnosticsRouteImport } from './routes/admin.diagnostics'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 import { Route as ApiPublicRazorpayWebhookRouteImport } from './routes/api.public.razorpay-webhook'
 import { Route as AdminOrdersOrderIdRouteImport } from './routes/admin.orders.$orderId'
 import { Route as AccountOrdersOrderIdRouteImport } from './routes/account.orders.$orderId'
@@ -175,6 +177,16 @@ const AdminKycRoute = AdminKycRouteImport.update({
   path: '/kyc',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminDiagnosticsRoute = AdminDiagnosticsRouteImport.update({
+  id: '/diagnostics',
+  path: '/diagnostics',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
 const ApiPublicRazorpayWebhookRoute =
   ApiPublicRazorpayWebhookRouteImport.update({
     id: '/api/public/razorpay-webhook',
@@ -202,6 +214,8 @@ export interface FileRoutesByFullPath {
   '/messages': typeof MessagesRouteWithChildren
   '/sell': typeof SellRoute
   '/seller': typeof SellerRouteWithChildren
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/diagnostics': typeof AdminDiagnosticsRoute
   '/admin/kyc': typeof AdminKycRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
   '/admin/payments': typeof AdminPaymentsRoute
@@ -231,6 +245,8 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/marketplace': typeof MarketplaceRoute
   '/sell': typeof SellRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/diagnostics': typeof AdminDiagnosticsRoute
   '/admin/kyc': typeof AdminKycRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
   '/admin/payments': typeof AdminPaymentsRoute
@@ -264,6 +280,8 @@ export interface FileRoutesById {
   '/messages': typeof MessagesRouteWithChildren
   '/sell': typeof SellRoute
   '/seller': typeof SellerRouteWithChildren
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/diagnostics': typeof AdminDiagnosticsRoute
   '/admin/kyc': typeof AdminKycRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
   '/admin/payments': typeof AdminPaymentsRoute
@@ -298,6 +316,8 @@ export interface FileRouteTypes {
     | '/messages'
     | '/sell'
     | '/seller'
+    | '/admin/analytics'
+    | '/admin/diagnostics'
     | '/admin/kyc'
     | '/admin/orders'
     | '/admin/payments'
@@ -327,6 +347,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/marketplace'
     | '/sell'
+    | '/admin/analytics'
+    | '/admin/diagnostics'
     | '/admin/kyc'
     | '/admin/orders'
     | '/admin/payments'
@@ -359,6 +381,8 @@ export interface FileRouteTypes {
     | '/messages'
     | '/sell'
     | '/seller'
+    | '/admin/analytics'
+    | '/admin/diagnostics'
     | '/admin/kyc'
     | '/admin/orders'
     | '/admin/payments'
@@ -593,6 +617,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminKycRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/diagnostics': {
+      id: '/admin/diagnostics'
+      path: '/diagnostics'
+      fullPath: '/admin/diagnostics'
+      preLoaderRoute: typeof AdminDiagnosticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/api/public/razorpay-webhook': {
       id: '/api/public/razorpay-webhook'
       path: '/api/public/razorpay-webhook'
@@ -641,6 +679,8 @@ const AdminOrdersRouteWithChildren = AdminOrdersRoute._addFileChildren(
 )
 
 interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminDiagnosticsRoute: typeof AdminDiagnosticsRoute
   AdminKycRoute: typeof AdminKycRoute
   AdminOrdersRoute: typeof AdminOrdersRouteWithChildren
   AdminPaymentsRoute: typeof AdminPaymentsRoute
@@ -648,6 +688,8 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminDiagnosticsRoute: AdminDiagnosticsRoute,
   AdminKycRoute: AdminKycRoute,
   AdminOrdersRoute: AdminOrdersRouteWithChildren,
   AdminPaymentsRoute: AdminPaymentsRoute,
@@ -711,3 +753,12 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

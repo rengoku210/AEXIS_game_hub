@@ -47,6 +47,7 @@ function MarketplacePage() {
     setPage(1);
     
     const fetchInitial = async () => {
+
       const res = await getMarketplaceListings({
         limit: 12,
         page: 1,
@@ -110,6 +111,7 @@ function MarketplacePage() {
 
   return (
     <SiteShell>
+
       <section className="px-6 pt-12 pb-8 max-w-7xl mx-auto">
         <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-crimson mb-3">— Marketplace</p>
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Live inventory</h1>

@@ -31,6 +31,7 @@ function AdminLayout() {
             { to: "/admin/kyc", label: "KYC" },
             { to: "/admin/payments", label: "Payments" },
             { to: "/admin/diagnostics", label: "Diagnostics" },
+            { to: "/admin/analytics", label: "Analytics" },
           ].map((t) => (
             <Link key={t.to} to={t.to} activeOptions={{ exact: t.exact }} activeProps={{ className: "border-crimson text-foreground" }}
               className="px-4 py-3 text-xs font-mono uppercase tracking-widest border-b-2 border-transparent text-muted-foreground hover:text-foreground transition-colors">

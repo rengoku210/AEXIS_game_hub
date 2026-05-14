@@ -26,6 +26,7 @@ export interface WPListing {
   description: string;
   description_html: string;
   price_inr: number;
+  original_price?: number | null;
   delivery_time_hours: number;
   cover_image_url: string | null;
   images: string[];

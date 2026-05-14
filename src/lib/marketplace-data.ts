@@ -1,6 +1,7 @@
 import { WordPressClient } from "./wordpress/client";
 import { supabase } from "@/integrations/supabase/client";
 import { WPListing } from "./wordpress/types";
+import { logger } from "./logger";
 
 // Convert WPListing to match the Supabase ListingRow format for the UI
 export function convertWPListing(wp: WPListing) {
@@ -25,7 +26,7 @@ export async function getMarketplaceListings(params?: { limit?: number; page?: n
   const wpRes = await WordPressClient.getListings(params);
   
   if (wpRes.data && wpRes.data.length > 0) {
-    console.log("[Marketplace] Using WordPress data", wpRes.data.length, "items");
+    logger.info("[Marketplace] Using WordPress data", { count: wpRes.data.length });
     return {
       data: wpRes.data.map(convertWPListing),
       total: wpRes.total,
@@ -34,7 +35,7 @@ export async function getMarketplaceListings(params?: { limit?: number; page?: n
     };
   }
 
-  console.log("[Marketplace] WP empty/failed, falling back to Supabase...");
+  logger.warn("[Marketplace] WP empty/failed, falling back to Supabase...", { params });
   // Fallback to Supabase
   let query = supabase
     .from("listings")
@@ -86,7 +87,7 @@ export async function getMarketplaceCategories() {
 export async function getMarketplaceListingDetail(slug: string) {
   const wp = await WordPressClient.getListing(slug);
   if (wp) {
-    console.log("[Marketplace] Using WordPress detail data", wp.title);
+    logger.info("[Marketplace] Using WordPress detail data", { title: wp.title });
     return {
       id: wp.transaction_listing_id || wp.id,
       slug: wp.slug,
@@ -112,7 +113,7 @@ export async function getMarketplaceListingDetail(slug: string) {
     };
   }
 
-  console.log("[Marketplace] WP detail empty/failed, falling back to Supabase...");
+  logger.info("[Marketplace] WP detail empty/failed, falling back to Supabase...");
   const { data } = await supabase
     .from("listings")
     .select(`

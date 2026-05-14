@@ -7,8 +7,7 @@ import { formatINR } from "@/lib/format";
 import { Star, Clock, ShieldCheck, ChevronLeft, MessageSquare } from "lucide-react";
 import { ensureConversation } from "@/lib/chat";
 import { toast } from "sonner";
-import { useServerFn } from "@tanstack/react-start";
-import { createRazorpayOrder, verifyRazorpayPayment } from "@/server/razorpay.functions";
+import { createRazorpayOrder, verifyRazorpayPayment } from "@/lib/payments";
 import { openRazorpayCheckout } from "@/lib/razorpay-client";
 
 import { getMarketplaceListingDetail } from "@/lib/marketplace-data";
@@ -34,8 +33,6 @@ function ListingDetail() {
     })();
   }, [slug]);
 
-  const createOrderFn = useServerFn(createRazorpayOrder);
-  const verifyFn = useServerFn(verifyRazorpayPayment);
 
   const handleBuyNow = async () => {
     if (!user) {
@@ -50,8 +47,9 @@ function ListingDetail() {
     }
     setOrdering(true);
     try {
-      const order = await createOrderFn({
-        data: { listing_id: listing.id, buyer_notes: notes || undefined },
+      const order = await createRazorpayOrder({
+        listing_id: listing.id,
+        buyer_notes: notes || undefined,
       });
 
       await openRazorpayCheckout({
@@ -69,7 +67,7 @@ function ListingDetail() {
         notes: { aexis_order_number: order.orderNumber },
         handler: async (resp) => {
           try {
-            await verifyFn({ data: resp });
+            await verifyRazorpayPayment(resp);
             toast.success("Payment confirmed");
           } catch (e) {
             // Webhook is the source of truth — show a softer message
@@ -131,6 +129,36 @@ function ListingDetail() {
         <Link to="/marketplace" className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-foreground">
           <ChevronLeft className="size-3" /> Back to marketplace
         </Link>
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": listing.title,
+            "image": listing.cover_image_url ? [listing.cover_image_url] : [],
+            "description": listing.description.replace(/<[^>]+>/g, '').substring(0, 200), // Strip HTML and truncate
+            "sku": listing.id,
+            "offers": {
+              "@type": "Offer",
+              "url": `https://aexis.com/listing/${listing.slug}`,
+              "priceCurrency": "INR",
+              "price": listing.price_inr,
+              "itemCondition": "https://schema.org/NewCondition",
+              "availability": "https://schema.org/InStock",
+              "seller": {
+                "@type": "Organization",
+                "name": listing.profiles?.display_name || "Aexis Vendor"
+              }
+            },
+            ...(listing.rating_count > 0 ? {
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": listing.rating_avg.toFixed(1),
+                "reviewCount": listing.rating_count
+              }
+            } : {})
+          })}
+        </script>
 
         <div className="mt-8 grid lg:grid-cols-3 gap-8">
           {/* LEFT: media + description */}
@@ -180,9 +208,29 @@ function ListingDetail() {
           {/* RIGHT: order panel */}
           <aside className="space-y-4">
             <div className="glass-strong rounded-2xl p-6 sticky top-28">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Starting at</p>
-              <p className="text-4xl font-bold mt-1">{formatINR(listing.price_inr)}</p>
-              <p className="font-mono text-[10px] text-muted-foreground mt-1">Inclusive of all fees</p>
+              {listing.price_inr > 0 ? (
+                <>
+                  {listing.original_price && listing.original_price > listing.price_inr && (
+                    <div className="flex items-center gap-3 mb-3">
+                      <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground line-through">
+                        {formatINR(listing.original_price)}
+                      </p>
+                      <span className="px-2 py-1 rounded text-[9px] font-bold bg-crimson/20 text-crimson uppercase">
+                        {Math.round(((listing.original_price - listing.price_inr) / listing.original_price) * 100)}% off
+                      </span>
+                    </div>
+                  )}
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Starting at</p>
+                  <p className="text-4xl font-bold mt-1">{formatINR(listing.price_inr)}</p>
+                  <p className="font-mono text-[10px] text-muted-foreground mt-1">Inclusive of all fees</p>
+                </>
+              ) : (
+                <>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Price</p>
+                  <p className="text-3xl font-bold mt-1 text-crimson">Contact Seller</p>
+                  <p className="font-mono text-[10px] text-muted-foreground mt-1">Message to discuss pricing</p>
+                </>
+              )}
 
               <div className="mt-6 space-y-3 text-xs text-muted-foreground">
                 <div className="flex items-center gap-2"><ShieldCheck className="size-3.5 text-crimson" /> Escrowed payment</div>
@@ -200,10 +248,13 @@ function ListingDetail() {
 
               <button
                 onClick={handleBuyNow}
-                disabled={ordering}
+                disabled={ordering || listing.price_inr <= 0}
                 className="mt-4 w-full bg-crimson text-foreground py-3.5 rounded-lg font-semibold text-sm uppercase tracking-wider hover:bg-crimson-glow disabled:opacity-50 transition-colors"
               >
-                {ordering ? "Opening payment…" : `Buy now · ${formatINR(listing.price_inr)}`}
+                {listing.price_inr > 0 
+                  ? (ordering ? "Opening payment…" : `Buy now · ${formatINR(listing.price_inr)}`)
+                  : "Message for pricing"
+                }
               </button>
               <button
                 onClick={() => void handleMessageSeller()}
