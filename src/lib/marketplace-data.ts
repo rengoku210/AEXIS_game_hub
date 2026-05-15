@@ -10,6 +10,7 @@ export function convertWPListing(wp: WPListing) {
     slug: wp.slug,
     title: wp.title,
     price_inr: wp.price_inr,
+    original_price: wp.original_price,
     cover_image_url: wp.cover_image_url,
     rating_avg: wp.rating_avg,
     rating_count: wp.rating_count,
@@ -94,6 +95,7 @@ export async function getMarketplaceListingDetail(slug: string) {
       title: wp.title,
       description: wp.description_html, // use HTML for WP
       price_inr: wp.price_inr,
+      original_price: wp.original_price,
       cover_image_url: wp.cover_image_url,
       images: wp.images,
       rating_avg: wp.rating_avg,

@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
-import { getRazorpayConfigStatus } from "@/server/razorpay.functions";
 import { CheckCircle2, XCircle, AlertTriangle, Copy, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 
@@ -17,13 +15,14 @@ interface ConfigStatus {
 }
 
 function AdminPayments() {
-  const fn = useServerFn(getRazorpayConfigStatus);
   const [status, setStatus] = useState<ConfigStatus | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    void fn().then((s) => { setStatus(s as ConfigStatus); setLoading(false); });
-  }, [fn]);
+    void fetch("/api/razorpay/config")
+      .then(res => res.json())
+      .then(s => { setStatus(s as ConfigStatus); setLoading(false); });
+  }, []);
 
   const webhookUrl = typeof window !== "undefined"
     ? `${window.location.origin}/api/public/razorpay-webhook`

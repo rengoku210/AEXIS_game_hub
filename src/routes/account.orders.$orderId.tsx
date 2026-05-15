@@ -9,8 +9,7 @@ import { ShieldCheck, Clock, CheckCircle2, XCircle, KeyRound, MessageSquare } fr
 import { statusLabel, statusToneClass, TIMELINE_ORDER, type OrderStatus } from "@/lib/order-workflow";
 import { ensureConversation } from "@/lib/chat";
 import { useNavigate } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
-import { createRazorpayOrder, verifyRazorpayPayment } from "@/server/razorpay.functions";
+import { createRazorpayOrder, verifyRazorpayPayment } from "@/lib/payments";
 import { openRazorpayCheckout } from "@/lib/razorpay-client";
 
 export const Route = createFileRoute("/account/orders/$orderId")({
@@ -37,8 +36,6 @@ function OrderDetail() {
   const { orderId } = Route.useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const createOrderFn = useServerFn(createRazorpayOrder);
-  const verifyFn = useServerFn(verifyRazorpayPayment);
   const [order, setOrder] = useState<Order | null>(null);
   const [handoff, setHandoff] = useState<Handoff | null>(null);
   const [loading, setLoading] = useState(true);
@@ -66,8 +63,8 @@ function OrderDetail() {
     try {
       // Re-create a fresh Razorpay order against the same listing — keeps things
       // simple if the user abandoned the previous attempt.
-      const fresh = await createOrderFn({
-        data: { listing_id: order.listing_id, buyer_notes: order.buyer_notes ?? undefined },
+      const fresh = await createRazorpayOrder({
+        listing_id: order.listing_id, buyer_notes: order.buyer_notes ?? undefined,
       });
       await openRazorpayCheckout({
         key: fresh.razorpayKeyId,
@@ -83,7 +80,7 @@ function OrderDetail() {
         theme: { color: "#7a0a14" },
         notes: { aexis_order_number: fresh.orderNumber },
         handler: async (resp) => {
-          try { await verifyFn({ data: resp }); toast.success("Payment confirmed"); }
+          try { await verifyRazorpayPayment(resp); toast.success("Payment confirmed"); }
           catch { toast.info("Payment received. Confirming…"); }
           void load();
         },
