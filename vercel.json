@@ -1,9 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "vite build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
   "framework": null,
   "rewrites": [
-    { "source": "/((?!assets/|favicon\\.ico).*)", "destination": "/_shell.html" }
+    { "source": "/", "destination": "/_shell.html" },
+    {
+      "source": "/((?!api/|assets/|_serverFn/|favicon\\.ico|robots\\.txt|sitemap\\.xml|.*\\.[\\w]+$).*)",
+      "destination": "/_shell.html"
+    }
   ]
 }

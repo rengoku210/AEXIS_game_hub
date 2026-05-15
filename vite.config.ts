@@ -11,4 +11,19 @@
 // createServerFn handlers run only on the Lovable preview.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig();
+const isVercelBuild = process.env.VERCEL === "1";
+
+export default defineConfig({
+  // Vercel sets VERCEL=1 at build time; Lovable keeps the Cloudflare worker path.
+  cloudflare: !isVercelBuild,
+  tanstackStart: isVercelBuild
+    ? {
+        spa: {
+          enabled: true,
+          prerender: {
+            outputPath: "/_shell",
+          },
+        },
+      }
+    : undefined,
+});
