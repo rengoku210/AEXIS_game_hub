@@ -1,6 +1,8 @@
 import { WPCategory, WPListing, WPNewsPost, WPPaginatedResponse } from "./types";
 
-const WP_URL = "http://aexis.local/wp-json/aexis/v1";
+const WP_URL =
+  (import.meta.env.VITE_WORDPRESS_API_BASE as string | undefined)?.trim() ||
+  "http://aexis.local/wp-json/aexis/v1";
 
 export class WordPressClient {
   static async getCategories(): Promise<WPCategory[]> {
