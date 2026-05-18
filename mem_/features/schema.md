@@ -1,6 +1,6 @@
 ---
 name: Database schema
-description: Core tables, enums, and RLS rules for the Aexis marketplace
+description: Core tables, enums, and RLS rules for the HUXZAIN marketplace
 type: feature
 ---
 Tables: profiles (seller_status enum), user_roles (admin/seller/buyer), categories (4 seeded slugs: game-accounts, coaching, rank-boosting, in-game-credits), listings (status: draft/pending/active/rejected/suspended/expired/sold), orders (status: pending_payment→paid→delivered→completed, with commission_inr + seller_payout_inr).

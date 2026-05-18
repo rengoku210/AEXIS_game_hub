@@ -41,7 +41,7 @@ hydrated app will crash with missing Supabase env errors.
 | `VITE_WORDPRESS_API_BASE` | optional | Headless WordPress base URL (defaults to local dev URL in code) |
 | `VITE_RAZORPAY_KEY_ID` | optional | Public key id for Checkout (e.g. `rzp_test_…`) |
 | `VITE_CLOUDINARY_CLOUD_NAME` | optional | Defaults exist in code when unset |
-| `VITE_CLOUDINARY_UPLOAD_PRESET` | optional | Defaults to `aexis_unsigned` when unset |
+| `VITE_CLOUDINARY_UPLOAD_PRESET` | optional | Defaults to `huxzain_unsigned` when unset |
 
 **Server-only (never `VITE_` — never import server code that reads these into route components)**
 
@@ -77,9 +77,9 @@ Cloudinary is the file storage layer (images, videos, KYC docs). Uploads use an
 1. Sign in to the Cloudinary dashboard.
 2. Go to *Settings → Upload → Upload presets → Add upload preset*.
 3. **Signing Mode = Unsigned**.
-4. (Recommended) Folder = `aexis`, **Use filename = false**, **Unique filename = true**.
+4. (Recommended) Folder = `huxzain`, **Use filename = false**, **Unique filename = true**.
 5. Save the preset name and use it as `VITE_CLOUDINARY_UPLOAD_PRESET`
-   (default expected by the code is `aexis_unsigned`).
+   (default expected by the code is `huxzain_unsigned`).
 
 ### Notes for Vercel
 

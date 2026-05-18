@@ -3,14 +3,14 @@ import { SiteShell } from "@/components/layout/SiteShell";
 import { ShieldCheck, Lock, Headphones, Users } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({ meta: [{ title: "About — Aexis" }, { name: "description", content: "Aexis is a curated marketplace connecting verified gaming vendors with discerning buyers." }] }),
+  head: () => ({ meta: [{ title: "About — HUXZAIN" }, { name: "description", content: "HUXZAIN is a trusted digital marketplace connecting verified sellers with discerning buyers." }] }),
   component: () => (
     <SiteShell>
       <section className="px-6 pt-16 pb-12 max-w-4xl mx-auto text-center">
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-crimson mb-4">— About Aexis</p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-crimson mb-4">— About HUXZAIN</p>
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-balance">A network built on <span className="text-crimson">trust</span>.</h1>
         <p className="mt-6 text-muted-foreground max-w-2xl mx-auto font-light text-lg leading-relaxed">
-          Aexis is the premier intermediary marketplace for elite gaming services. We don't sell. We connect — vendors and buyers, with bank-grade security between.
+          HUXZAIN is the premier digital marketplace for elite gaming services. We don't sell. We connect — vendors and buyers, with bank-grade security between.
         </p>
       </section>
       <section className="px-6 pb-24 max-w-5xl mx-auto grid md:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden">

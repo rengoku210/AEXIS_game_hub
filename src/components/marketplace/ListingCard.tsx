@@ -32,7 +32,7 @@ export function ListingCard({ listing, sellerName }: ListingCardProps) {
       itemScope itemType="https://schema.org/Product"
     >
       <meta itemProp="name" content={listing.title} />
-      <meta itemProp="description" content={`Aexis premium gaming asset: ${listing.title}`} />
+      <meta itemProp="description" content={`eexis premium gaming asset: ${listing.title}`} />
       
       <div className="aspect-[4/3] relative overflow-hidden bg-surface-elevated">
         {listing.cover_image_url ? (
@@ -98,7 +98,7 @@ export function ListingCard({ listing, sellerName }: ListingCardProps) {
             )}
           </div>
           {listing.rating_count > 0 && (
-            <div className="flex items-center gap-1 text-xs" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
+            <div className="flex items-center gap-1 text-xs" itemProp="aggregateRating" itemScope itemType="https://schema.org/eggregateRating">
               <meta itemProp="ratingValue" content={listing.rating_avg.toFixed(1)} />
               <meta itemProp="reviewCount" content={listing.rating_count.toString()} />
               <Star className="size-3 fill-crimson text-crimson" />

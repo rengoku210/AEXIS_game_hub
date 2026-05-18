@@ -146,7 +146,7 @@ function NewListing() {
   return (
     <div className="max-w-3xl">
       <h2 className="text-xl font-bold mb-1">Create a new listing</h2>
-      <p className="text-sm text-muted-foreground mb-6">Submitted listings are reviewed by Aexis moderators before going live.</p>
+      <p className="text-sm text-muted-foreground mb-6">Submitted listings are reviewed by HUXZAIN moderators before going live.</p>
 
       <form onSubmit={submit} className="glass-strong rounded-2xl p-8 space-y-5">
         <Field label="Listing title">

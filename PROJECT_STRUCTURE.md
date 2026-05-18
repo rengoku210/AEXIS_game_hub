@@ -1,9 +1,9 @@
-# Aexis Marketplace - Hybrid Architecture
+# HUXZAIN Marketplace — Hybrid Architecture
 
 ## Overview
-Aexis is built on a **Hybrid Data Architecture**:
+HUXZAIN is built on a **Hybrid Data Architecture**:
 - **WordPress (CMS):** Primary source of truth for marketplace catalog (Listings, Categories, Content).
-- **React (Frontend):** High-performance, Vite + TanStack router based single page application.
+- **React (Frontend):** High-performance, Vite + TanStack Start router based single page application.
 - **Supabase (Backend as a Service):** Handles authentication, transactional data, user profiles, and serves as a fallback database if WordPress is unreachable.
 - **Razorpay:** Payment gateway used for INR transactions and order escrow.
 
@@ -14,12 +14,12 @@ Aexis is built on a **Hybrid Data Architecture**:
 - **Styling:** Tailwind CSS v4 + Radix UI Primitives + Lucide Icons.
 
 ## WordPress Plugin Architecture
-- **Location:** `C:\Users\rammo\Local Sites\aexis\app\public\wp-content\plugins\aexis-marketplace-cms`
+- **Location:** `C:\Users\rammo\Local Sites\huxzain\app\public\wp-content\plugins\huxzain-marketplace`
 - **Core Files:**
-  - `aexis-marketplace-cms.php`: Registers the custom post types (Listings, News), meta boxes, and REST API endpoints.
+  - `huxzain-marketplace.php`: Registers the custom post types (Listings, News), meta boxes, and REST API endpoints.
 - **REST API Endpoints:**
-  - `GET /wp-json/aexis/v1/listings` - Supports `page`, `limit`, `category`, and `featured` filtering. Includes `X-WP-TotalPages` headers for frontend pagination.
-  - `GET /wp-json/aexis/v1/categories` - Returns active categories.
+  - `GET /wp-json/huxzain/v1/listings` - Supports `page`, `limit`, `category`, and `featured` filtering. Includes `X-WP-TotalPages` headers for frontend pagination.
+  - `GET /wp-json/huxzain/v1/categories` - Returns active categories.
 - **Caching:** The REST API utilizes WordPress Transients (cached for 15 mins) and automatically invalidates the cache on post save/update/delete.
 
 ## Supabase Integrations

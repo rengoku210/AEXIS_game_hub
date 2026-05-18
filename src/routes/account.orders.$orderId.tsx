@@ -70,7 +70,7 @@ function OrderDetail() {
         key: fresh.razorpayKeyId,
         amount: fresh.amountInPaise,
         currency: fresh.currency,
-        name: "Aexis",
+        name: "HUXZAIN",
         description: fresh.listingTitle,
         order_id: fresh.razorpayOrderId,
         prefill: {
@@ -78,7 +78,7 @@ function OrderDetail() {
           email: fresh.buyerEmail ?? undefined,
         },
         theme: { color: "#7a0a14" },
-        notes: { aexis_order_number: fresh.orderNumber },
+        notes: { huxzain_order_number: fresh.orderNumber },
         handler: async (resp) => {
           try { await verifyRazorpayPayment(resp); toast.success("Payment confirmed"); }
           catch { toast.info("Payment received. Confirming…"); }

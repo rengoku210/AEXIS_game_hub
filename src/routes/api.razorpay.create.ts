@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { assertVerifiedUser, verifiedUserErrorResponse } from "@/lib/auth/server-verify";
 
 const createOrderInput = z.object({
   listing_id: z.string().uuid(),
@@ -21,7 +22,11 @@ export const Route = createFileRoute("/api/razorpay/create")({
         if (claimsError || !claimsData.user) {
           return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401, headers: { "Content-Type": "application/json" } });
         }
-        
+
+        if (!assertVerifiedUser(claimsData.user)) {
+          return verifiedUserErrorResponse();
+        }
+
         const userId = claimsData.user.id;
 
         const body = await request.json();

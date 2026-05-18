@@ -14,7 +14,7 @@ export const Route = createFileRoute("/marketplace")({
   }),
   head: () => ({
     meta: [
-      { title: "Marketplace — Aexis" },
+      { title: "Marketplace — HUXZAIN" },
       { name: "description", content: "Browse all live gaming listings: accounts, coaching, rank boosts, and in-game credits." },
     ],
   }),
@@ -115,7 +115,7 @@ function MarketplacePage() {
       <section className="px-6 pt-12 pb-8 max-w-7xl mx-auto">
         <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-crimson mb-3">— Marketplace</p>
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Live inventory</h1>
-        <p className="mt-3 text-muted-foreground max-w-2xl font-light">All listings have been verified by Aexis moderators and the seller's identity confirmed.</p>
+        <p className="mt-3 text-muted-foreground max-w-2xl font-light">All listings have been verified by HUXZAIN moderators and the seller's identity confirmed.</p>
 
         <form onSubmit={handleSearch} className="mt-8 flex gap-2 max-w-2xl">
           <div className="flex-1 relative">

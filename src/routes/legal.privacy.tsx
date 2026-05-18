@@ -2,10 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/marketplace/LegalPage";
 
 export const Route = createFileRoute("/legal/privacy")({
-  head: () => ({ meta: [{ title: "Privacy Policy — Aexis" }] }),
+  head: () => ({ meta: [{ title: "Privacy Policy — HUXZAIN" }] }),
   component: () => (
     <LegalPage title="Privacy Policy" eyebrow="Legal">
-      <p>Aexis respects your privacy. This policy explains what we collect, why, and how we protect it.</p>
+      <p>HUXZAIN respects your privacy. This policy explains what we collect, why, and how we protect it.</p>
       <h2 className="text-foreground font-bold text-xl mt-8">Data we collect</h2>
       <p>Account data (email, display name), transaction data (orders, payments), and minimal usage analytics required for fraud prevention.</p>
       <h2 className="text-foreground font-bold text-xl mt-8">How we use it</h2>

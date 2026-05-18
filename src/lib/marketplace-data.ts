@@ -23,7 +23,7 @@ export function convertWPListing(wp: WPListing) {
   };
 }
 
-export async function getMarketplaceListings(params?: { limit?: number; page?: number; category?: string; q?: string }) {
+export async function getMarketplaceListings(params?: { limit?: number; page?: number; category?: string; q?: string; featured?: boolean }) {
   const wpRes = await WordPressClient.getListings(params);
   
   if (wpRes.data && wpRes.data.length > 0) {
@@ -56,6 +56,7 @@ export async function getMarketplaceListings(params?: { limit?: number; page?: n
 
   // Supabase categories use UUIDs, but WP uses slugs. We skip filtering in fallback for category slugs unless we query the category first
   if (params?.q) query = query.ilike("title", `%${params.q}%`);
+  if (params?.featured) query = query.eq("is_featured", true);
 
   const { data, count } = await query;
   

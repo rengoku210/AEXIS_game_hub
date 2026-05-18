@@ -37,7 +37,7 @@ function DiagnosticsPage() {
         const cats = await WordPressClient.getCategories();
         if (cats && cats.length > 0) {
           setWpStatus("ok");
-          setWpVersion("v1.0.0 (Aexis CMS)");
+          setWpVersion("v2.0.0 (HUXZAIN Marketplace)");
           addLog("WordPress API is reachable and responding.", "info");
         } else {
           setWpStatus("error");

@@ -1,6 +1,6 @@
-# Aexis Marketplace - REST API Reference
+# HUXZAIN Marketplace - REST API Reference
 
-**Base URL**: `/wp-json/aexis/v1`
+**Base URL**: `/wp-json/huxzain/v1`
 
 ## Listings
 

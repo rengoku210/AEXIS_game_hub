@@ -13,6 +13,7 @@ import { Route as SellerRouteImport } from './routes/seller'
 import { Route as SellRouteImport } from './routes/sell'
 import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AccountRouteImport } from './routes/account'
@@ -21,6 +22,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SellerIndexRouteImport } from './routes/seller.index'
 import { Route as MessagesIndexRouteImport } from './routes/messages.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as SellerPlansRouteImport } from './routes/seller.plans'
 import { Route as SellerOrdersRouteImport } from './routes/seller.orders'
 import { Route as SellerNewRouteImport } from './routes/seller.new'
 import { Route as SellerKycRouteImport } from './routes/seller.kyc'
@@ -33,15 +35,22 @@ import { Route as LegalRefundRouteImport } from './routes/legal.refund'
 import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
 import { Route as LegalDisclaimerRouteImport } from './routes/legal.disclaimer'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
+import { Route as ApiContactRouteImport } from './routes/api.contact'
 import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminModerationRouteImport } from './routes/admin.moderation'
 import { Route as AdminKycRouteImport } from './routes/admin.kyc'
 import { Route as AdminDiagnosticsRouteImport } from './routes/admin.diagnostics'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
+import { Route as ApiSellerSubVerifyRouteImport } from './routes/api.seller-sub.verify'
+import { Route as ApiSellerSubCreateRouteImport } from './routes/api.seller-sub.create'
 import { Route as ApiRazorpayVerifyRouteImport } from './routes/api.razorpay.verify'
 import { Route as ApiRazorpayCreateRouteImport } from './routes/api.razorpay.create'
 import { Route as ApiRazorpayConfigRouteImport } from './routes/api.razorpay.config'
 import { Route as ApiPublicRazorpayWebhookRouteImport } from './routes/api.public.razorpay-webhook'
+import { Route as ApiOtpVerifyRouteImport } from './routes/api.otp.verify'
+import { Route as ApiOtpSendRouteImport } from './routes/api.otp.send'
 import { Route as AdminOrdersOrderIdRouteImport } from './routes/admin.orders.$orderId'
 import { Route as AccountOrdersOrderIdRouteImport } from './routes/account.orders.$orderId'
 
@@ -63,6 +72,11 @@ const MessagesRoute = MessagesRouteImport.update({
 const MarketplaceRoute = MarketplaceRouteImport.update({
   id: '/marketplace',
   path: '/marketplace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -104,6 +118,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const SellerPlansRoute = SellerPlansRouteImport.update({
+  id: '/plans',
+  path: '/plans',
+  getParentRoute: () => SellerRoute,
 } as any)
 const SellerOrdersRoute = SellerOrdersRouteImport.update({
   id: '/orders',
@@ -165,6 +184,16 @@ const CategorySlugRoute = CategorySlugRouteImport.update({
   path: '/category/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/callback',
+  path: '/callback',
+  getParentRoute: () => AuthRoute,
+} as any)
+const ApiContactRoute = ApiContactRouteImport.update({
+  id: '/api/contact',
+  path: '/api/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
   id: '/payments',
   path: '/payments',
@@ -173,6 +202,11 @@ const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
 const AdminOrdersRoute = AdminOrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminModerationRoute = AdminModerationRouteImport.update({
+  id: '/moderation',
+  path: '/moderation',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminKycRoute = AdminKycRouteImport.update({
@@ -189,6 +223,16 @@ const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
   getParentRoute: () => AdminRoute,
+} as any)
+const ApiSellerSubVerifyRoute = ApiSellerSubVerifyRouteImport.update({
+  id: '/api/seller-sub/verify',
+  path: '/api/seller-sub/verify',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSellerSubCreateRoute = ApiSellerSubCreateRouteImport.update({
+  id: '/api/seller-sub/create',
+  path: '/api/seller-sub/create',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ApiRazorpayVerifyRoute = ApiRazorpayVerifyRouteImport.update({
   id: '/api/razorpay/verify',
@@ -211,6 +255,16 @@ const ApiPublicRazorpayWebhookRoute =
     path: '/api/public/razorpay-webhook',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiOtpVerifyRoute = ApiOtpVerifyRouteImport.update({
+  id: '/api/otp/verify',
+  path: '/api/otp/verify',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiOtpSendRoute = ApiOtpSendRouteImport.update({
+  id: '/api/otp/send',
+  path: '/api/otp/send',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminOrdersOrderIdRoute = AdminOrdersOrderIdRouteImport.update({
   id: '/$orderId',
   path: '/$orderId',
@@ -227,7 +281,8 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/account': typeof AccountRouteWithChildren
   '/admin': typeof AdminRouteWithChildren
-  '/auth': typeof AuthRoute
+  '/auth': typeof AuthRouteWithChildren
+  '/contact': typeof ContactRoute
   '/marketplace': typeof MarketplaceRoute
   '/messages': typeof MessagesRouteWithChildren
   '/sell': typeof SellRoute
@@ -235,8 +290,11 @@ export interface FileRoutesByFullPath {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/diagnostics': typeof AdminDiagnosticsRoute
   '/admin/kyc': typeof AdminKycRoute
+  '/admin/moderation': typeof AdminModerationRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
   '/admin/payments': typeof AdminPaymentsRoute
+  '/api/contact': typeof ApiContactRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/category/$slug': typeof CategorySlugRoute
   '/legal/disclaimer': typeof LegalDisclaimerRoute
   '/legal/privacy': typeof LegalPrivacyRoute
@@ -249,28 +307,37 @@ export interface FileRoutesByFullPath {
   '/seller/kyc': typeof SellerKycRoute
   '/seller/new': typeof SellerNewRoute
   '/seller/orders': typeof SellerOrdersRoute
+  '/seller/plans': typeof SellerPlansRoute
   '/admin/': typeof AdminIndexRoute
   '/messages/': typeof MessagesIndexRoute
   '/seller/': typeof SellerIndexRoute
   '/account/orders/$orderId': typeof AccountOrdersOrderIdRoute
   '/admin/orders/$orderId': typeof AdminOrdersOrderIdRoute
+  '/api/otp/send': typeof ApiOtpSendRoute
+  '/api/otp/verify': typeof ApiOtpVerifyRoute
   '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
   '/api/razorpay/config': typeof ApiRazorpayConfigRoute
   '/api/razorpay/create': typeof ApiRazorpayCreateRoute
   '/api/razorpay/verify': typeof ApiRazorpayVerifyRoute
+  '/api/seller-sub/create': typeof ApiSellerSubCreateRoute
+  '/api/seller-sub/verify': typeof ApiSellerSubVerifyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/account': typeof AccountRouteWithChildren
-  '/auth': typeof AuthRoute
+  '/auth': typeof AuthRouteWithChildren
+  '/contact': typeof ContactRoute
   '/marketplace': typeof MarketplaceRoute
   '/sell': typeof SellRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/diagnostics': typeof AdminDiagnosticsRoute
   '/admin/kyc': typeof AdminKycRoute
+  '/admin/moderation': typeof AdminModerationRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
   '/admin/payments': typeof AdminPaymentsRoute
+  '/api/contact': typeof ApiContactRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/category/$slug': typeof CategorySlugRoute
   '/legal/disclaimer': typeof LegalDisclaimerRoute
   '/legal/privacy': typeof LegalPrivacyRoute
@@ -283,15 +350,20 @@ export interface FileRoutesByTo {
   '/seller/kyc': typeof SellerKycRoute
   '/seller/new': typeof SellerNewRoute
   '/seller/orders': typeof SellerOrdersRoute
+  '/seller/plans': typeof SellerPlansRoute
   '/admin': typeof AdminIndexRoute
   '/messages': typeof MessagesIndexRoute
   '/seller': typeof SellerIndexRoute
   '/account/orders/$orderId': typeof AccountOrdersOrderIdRoute
   '/admin/orders/$orderId': typeof AdminOrdersOrderIdRoute
+  '/api/otp/send': typeof ApiOtpSendRoute
+  '/api/otp/verify': typeof ApiOtpVerifyRoute
   '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
   '/api/razorpay/config': typeof ApiRazorpayConfigRoute
   '/api/razorpay/create': typeof ApiRazorpayCreateRoute
   '/api/razorpay/verify': typeof ApiRazorpayVerifyRoute
+  '/api/seller-sub/create': typeof ApiSellerSubCreateRoute
+  '/api/seller-sub/verify': typeof ApiSellerSubVerifyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -299,7 +371,8 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/account': typeof AccountRouteWithChildren
   '/admin': typeof AdminRouteWithChildren
-  '/auth': typeof AuthRoute
+  '/auth': typeof AuthRouteWithChildren
+  '/contact': typeof ContactRoute
   '/marketplace': typeof MarketplaceRoute
   '/messages': typeof MessagesRouteWithChildren
   '/sell': typeof SellRoute
@@ -307,8 +380,11 @@ export interface FileRoutesById {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/diagnostics': typeof AdminDiagnosticsRoute
   '/admin/kyc': typeof AdminKycRoute
+  '/admin/moderation': typeof AdminModerationRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
   '/admin/payments': typeof AdminPaymentsRoute
+  '/api/contact': typeof ApiContactRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/category/$slug': typeof CategorySlugRoute
   '/legal/disclaimer': typeof LegalDisclaimerRoute
   '/legal/privacy': typeof LegalPrivacyRoute
@@ -321,15 +397,20 @@ export interface FileRoutesById {
   '/seller/kyc': typeof SellerKycRoute
   '/seller/new': typeof SellerNewRoute
   '/seller/orders': typeof SellerOrdersRoute
+  '/seller/plans': typeof SellerPlansRoute
   '/admin/': typeof AdminIndexRoute
   '/messages/': typeof MessagesIndexRoute
   '/seller/': typeof SellerIndexRoute
   '/account/orders/$orderId': typeof AccountOrdersOrderIdRoute
   '/admin/orders/$orderId': typeof AdminOrdersOrderIdRoute
+  '/api/otp/send': typeof ApiOtpSendRoute
+  '/api/otp/verify': typeof ApiOtpVerifyRoute
   '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
   '/api/razorpay/config': typeof ApiRazorpayConfigRoute
   '/api/razorpay/create': typeof ApiRazorpayCreateRoute
   '/api/razorpay/verify': typeof ApiRazorpayVerifyRoute
+  '/api/seller-sub/create': typeof ApiSellerSubCreateRoute
+  '/api/seller-sub/verify': typeof ApiSellerSubVerifyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -339,6 +420,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/admin'
     | '/auth'
+    | '/contact'
     | '/marketplace'
     | '/messages'
     | '/sell'
@@ -346,8 +428,11 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/diagnostics'
     | '/admin/kyc'
+    | '/admin/moderation'
     | '/admin/orders'
     | '/admin/payments'
+    | '/api/contact'
+    | '/auth/callback'
     | '/category/$slug'
     | '/legal/disclaimer'
     | '/legal/privacy'
@@ -360,28 +445,37 @@ export interface FileRouteTypes {
     | '/seller/kyc'
     | '/seller/new'
     | '/seller/orders'
+    | '/seller/plans'
     | '/admin/'
     | '/messages/'
     | '/seller/'
     | '/account/orders/$orderId'
     | '/admin/orders/$orderId'
+    | '/api/otp/send'
+    | '/api/otp/verify'
     | '/api/public/razorpay-webhook'
     | '/api/razorpay/config'
     | '/api/razorpay/create'
     | '/api/razorpay/verify'
+    | '/api/seller-sub/create'
+    | '/api/seller-sub/verify'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/account'
     | '/auth'
+    | '/contact'
     | '/marketplace'
     | '/sell'
     | '/admin/analytics'
     | '/admin/diagnostics'
     | '/admin/kyc'
+    | '/admin/moderation'
     | '/admin/orders'
     | '/admin/payments'
+    | '/api/contact'
+    | '/auth/callback'
     | '/category/$slug'
     | '/legal/disclaimer'
     | '/legal/privacy'
@@ -394,15 +488,20 @@ export interface FileRouteTypes {
     | '/seller/kyc'
     | '/seller/new'
     | '/seller/orders'
+    | '/seller/plans'
     | '/admin'
     | '/messages'
     | '/seller'
     | '/account/orders/$orderId'
     | '/admin/orders/$orderId'
+    | '/api/otp/send'
+    | '/api/otp/verify'
     | '/api/public/razorpay-webhook'
     | '/api/razorpay/config'
     | '/api/razorpay/create'
     | '/api/razorpay/verify'
+    | '/api/seller-sub/create'
+    | '/api/seller-sub/verify'
   id:
     | '__root__'
     | '/'
@@ -410,6 +509,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/admin'
     | '/auth'
+    | '/contact'
     | '/marketplace'
     | '/messages'
     | '/sell'
@@ -417,8 +517,11 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/diagnostics'
     | '/admin/kyc'
+    | '/admin/moderation'
     | '/admin/orders'
     | '/admin/payments'
+    | '/api/contact'
+    | '/auth/callback'
     | '/category/$slug'
     | '/legal/disclaimer'
     | '/legal/privacy'
@@ -431,15 +534,20 @@ export interface FileRouteTypes {
     | '/seller/kyc'
     | '/seller/new'
     | '/seller/orders'
+    | '/seller/plans'
     | '/admin/'
     | '/messages/'
     | '/seller/'
     | '/account/orders/$orderId'
     | '/admin/orders/$orderId'
+    | '/api/otp/send'
+    | '/api/otp/verify'
     | '/api/public/razorpay-webhook'
     | '/api/razorpay/config'
     | '/api/razorpay/create'
     | '/api/razorpay/verify'
+    | '/api/seller-sub/create'
+    | '/api/seller-sub/verify'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -447,11 +555,13 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AccountRoute: typeof AccountRouteWithChildren
   AdminRoute: typeof AdminRouteWithChildren
-  AuthRoute: typeof AuthRoute
+  AuthRoute: typeof AuthRouteWithChildren
+  ContactRoute: typeof ContactRoute
   MarketplaceRoute: typeof MarketplaceRoute
   MessagesRoute: typeof MessagesRouteWithChildren
   SellRoute: typeof SellRoute
   SellerRoute: typeof SellerRouteWithChildren
+  ApiContactRoute: typeof ApiContactRoute
   CategorySlugRoute: typeof CategorySlugRoute
   LegalDisclaimerRoute: typeof LegalDisclaimerRoute
   LegalPrivacyRoute: typeof LegalPrivacyRoute
@@ -459,10 +569,14 @@ export interface RootRouteChildren {
   LegalSellerAgreementRoute: typeof LegalSellerAgreementRoute
   LegalTermsRoute: typeof LegalTermsRoute
   ListingSlugRoute: typeof ListingSlugRoute
+  ApiOtpSendRoute: typeof ApiOtpSendRoute
+  ApiOtpVerifyRoute: typeof ApiOtpVerifyRoute
   ApiPublicRazorpayWebhookRoute: typeof ApiPublicRazorpayWebhookRoute
   ApiRazorpayConfigRoute: typeof ApiRazorpayConfigRoute
   ApiRazorpayCreateRoute: typeof ApiRazorpayCreateRoute
   ApiRazorpayVerifyRoute: typeof ApiRazorpayVerifyRoute
+  ApiSellerSubCreateRoute: typeof ApiSellerSubCreateRoute
+  ApiSellerSubVerifyRoute: typeof ApiSellerSubVerifyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -493,6 +607,13 @@ declare module '@tanstack/react-router' {
       path: '/marketplace'
       fullPath: '/marketplace'
       preLoaderRoute: typeof MarketplaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -550,6 +671,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/seller/plans': {
+      id: '/seller/plans'
+      path: '/plans'
+      fullPath: '/seller/plans'
+      preLoaderRoute: typeof SellerPlansRouteImport
+      parentRoute: typeof SellerRoute
     }
     '/seller/orders': {
       id: '/seller/orders'
@@ -635,6 +763,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategorySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/callback': {
+      id: '/auth/callback'
+      path: '/callback'
+      fullPath: '/auth/callback'
+      preLoaderRoute: typeof AuthCallbackRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/api/contact': {
+      id: '/api/contact'
+      path: '/api/contact'
+      fullPath: '/api/contact'
+      preLoaderRoute: typeof ApiContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/payments': {
       id: '/admin/payments'
       path: '/payments'
@@ -647,6 +789,13 @@ declare module '@tanstack/react-router' {
       path: '/orders'
       fullPath: '/admin/orders'
       preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/moderation': {
+      id: '/admin/moderation'
+      path: '/moderation'
+      fullPath: '/admin/moderation'
+      preLoaderRoute: typeof AdminModerationRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/kyc': {
@@ -669,6 +818,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/analytics'
       preLoaderRoute: typeof AdminAnalyticsRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/api/seller-sub/verify': {
+      id: '/api/seller-sub/verify'
+      path: '/api/seller-sub/verify'
+      fullPath: '/api/seller-sub/verify'
+      preLoaderRoute: typeof ApiSellerSubVerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/seller-sub/create': {
+      id: '/api/seller-sub/create'
+      path: '/api/seller-sub/create'
+      fullPath: '/api/seller-sub/create'
+      preLoaderRoute: typeof ApiSellerSubCreateRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/api/razorpay/verify': {
       id: '/api/razorpay/verify'
@@ -696,6 +859,20 @@ declare module '@tanstack/react-router' {
       path: '/api/public/razorpay-webhook'
       fullPath: '/api/public/razorpay-webhook'
       preLoaderRoute: typeof ApiPublicRazorpayWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/otp/verify': {
+      id: '/api/otp/verify'
+      path: '/api/otp/verify'
+      fullPath: '/api/otp/verify'
+      preLoaderRoute: typeof ApiOtpVerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/otp/send': {
+      id: '/api/otp/send'
+      path: '/api/otp/send'
+      fullPath: '/api/otp/send'
+      preLoaderRoute: typeof ApiOtpSendRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/orders/$orderId': {
@@ -742,6 +919,7 @@ interface AdminRouteChildren {
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminDiagnosticsRoute: typeof AdminDiagnosticsRoute
   AdminKycRoute: typeof AdminKycRoute
+  AdminModerationRoute: typeof AdminModerationRoute
   AdminOrdersRoute: typeof AdminOrdersRouteWithChildren
   AdminPaymentsRoute: typeof AdminPaymentsRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -751,12 +929,23 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminDiagnosticsRoute: AdminDiagnosticsRoute,
   AdminKycRoute: AdminKycRoute,
+  AdminModerationRoute: AdminModerationRoute,
   AdminOrdersRoute: AdminOrdersRouteWithChildren,
   AdminPaymentsRoute: AdminPaymentsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface AuthRouteChildren {
+  AuthCallbackRoute: typeof AuthCallbackRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthCallbackRoute: AuthCallbackRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface MessagesRouteChildren {
   MessagesConversationIdRoute: typeof MessagesConversationIdRoute
@@ -777,6 +966,7 @@ interface SellerRouteChildren {
   SellerKycRoute: typeof SellerKycRoute
   SellerNewRoute: typeof SellerNewRoute
   SellerOrdersRoute: typeof SellerOrdersRoute
+  SellerPlansRoute: typeof SellerPlansRoute
   SellerIndexRoute: typeof SellerIndexRoute
 }
 
@@ -785,6 +975,7 @@ const SellerRouteChildren: SellerRouteChildren = {
   SellerKycRoute: SellerKycRoute,
   SellerNewRoute: SellerNewRoute,
   SellerOrdersRoute: SellerOrdersRoute,
+  SellerPlansRoute: SellerPlansRoute,
   SellerIndexRoute: SellerIndexRoute,
 }
 
@@ -796,11 +987,13 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AccountRoute: AccountRouteWithChildren,
   AdminRoute: AdminRouteWithChildren,
-  AuthRoute: AuthRoute,
+  AuthRoute: AuthRouteWithChildren,
+  ContactRoute: ContactRoute,
   MarketplaceRoute: MarketplaceRoute,
   MessagesRoute: MessagesRouteWithChildren,
   SellRoute: SellRoute,
   SellerRoute: SellerRouteWithChildren,
+  ApiContactRoute: ApiContactRoute,
   CategorySlugRoute: CategorySlugRoute,
   LegalDisclaimerRoute: LegalDisclaimerRoute,
   LegalPrivacyRoute: LegalPrivacyRoute,
@@ -808,10 +1001,14 @@ const rootRouteChildren: RootRouteChildren = {
   LegalSellerAgreementRoute: LegalSellerAgreementRoute,
   LegalTermsRoute: LegalTermsRoute,
   ListingSlugRoute: ListingSlugRoute,
+  ApiOtpSendRoute: ApiOtpSendRoute,
+  ApiOtpVerifyRoute: ApiOtpVerifyRoute,
   ApiPublicRazorpayWebhookRoute: ApiPublicRazorpayWebhookRoute,
   ApiRazorpayConfigRoute: ApiRazorpayConfigRoute,
   ApiRazorpayCreateRoute: ApiRazorpayCreateRoute,
   ApiRazorpayVerifyRoute: ApiRazorpayVerifyRoute,
+  ApiSellerSubCreateRoute: ApiSellerSubCreateRoute,
+  ApiSellerSubVerifyRoute: ApiSellerSubVerifyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

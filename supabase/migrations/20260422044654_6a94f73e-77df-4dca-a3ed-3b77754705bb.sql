@@ -47,7 +47,7 @@ CREATE TRIGGER trg_seller_plans_updated
 
 -- Seed plans with placeholder pricing (editable in admin)
 INSERT INTO public.seller_plans (tier, name, tagline, price_inr_monthly, price_inr_yearly, listing_limit, featured_slots, includes_verified_badge, includes_spotlight, commission_pct, sort_order, features) VALUES
-  ('free',     'Free',     'Get started selling on Aexis',         0,     0,      3,   0, false, false, 10.00, 1, '["Up to 3 active listings","Standard support","10% commission"]'::jsonb),
+  ('free',     'Free',     'Get started selling on HUXZAIN',         0,     0,      3,   0, false, false, 10.00, 1, '["Up to 3 active listings","Standard support","10% commission"]'::jsonb),
   ('basic',    'Basic',    'For active sellers',                    0,     0,     10,   1, false, false, 10.00, 2, '["Up to 10 active listings","1 featured slot","Priority support"]'::jsonb),
   ('pro',      'Pro',      'Verified seller with premium presence', 0,     0,     30,   3, true,  false,  8.00, 3, '["Up to 30 active listings","3 featured slots","Verified badge","Lower 8% commission"]'::jsonb),
   ('advanced', 'Advanced', 'Unlimited reach + spotlight placement', 0,     0, 999999, 10, true,  true,   6.00, 4, '["Unlimited listings","10 featured slots","Verified badge","Spotlight placement","Lowest 6% commission","Dedicated support"]'::jsonb);

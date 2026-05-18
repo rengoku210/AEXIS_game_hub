@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/marketplace/LegalPage";
 
 export const Route = createFileRoute("/legal/refund")({
-  head: () => ({ meta: [{ title: "Refund Policy — Aexis" }] }),
+  head: () => ({ meta: [{ title: "Refund Policy — HUXZAIN" }] }),
   component: () => (
     <LegalPage title="Refund Policy" eyebrow="Legal">
       <p>Buyer funds are held in escrow until delivery is confirmed. If a seller fails to deliver, or delivers an asset not matching the listing, you may open a dispute within 7 days of the delivery date.</p>

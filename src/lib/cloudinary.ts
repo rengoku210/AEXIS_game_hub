@@ -11,7 +11,7 @@
  * One-time setup in Cloudinary dashboard (Settings → Upload → Upload presets):
  *   1. Click "Add upload preset".
  *   2. Set Signing Mode = "Unsigned".
- *   3. (Recommended) Set "Folder" to e.g. `aexis` and enable
+ *   3. (Recommended) Set "Folder" to e.g. `huxzain` and enable
  *      "Use filename" = false, "Unique filename" = true.
  *   4. Save and copy the preset name into VITE_CLOUDINARY_UPLOAD_PRESET.
  */
@@ -23,7 +23,7 @@
  * MUST NOT be added here; uploads go through an unsigned preset only.
  */
 const DEFAULT_CLOUD_NAME = "dddxat36h";
-const DEFAULT_UPLOAD_PRESET = "aexis_unsigned";
+const DEFAULT_UPLOAD_PRESET = "huxzain_unsigned";
 
 const CLOUD_NAME =
   (import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined) ||

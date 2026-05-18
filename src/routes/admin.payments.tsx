@@ -46,7 +46,7 @@ function AdminPayments() {
       <div>
         <h2 className="text-xl font-bold mb-1">Razorpay configuration</h2>
         <p className="text-sm text-muted-foreground">
-          This deployment uses a single Razorpay account. All buyer payments are credited directly to the bank account linked to your Razorpay business profile — Aexis takes no commission.
+          This deployment uses a single Razorpay account. All buyer payments are credited directly to the bank account linked to your Razorpay business profile — HUXZAIN takes no commission.
         </p>
       </div>
 

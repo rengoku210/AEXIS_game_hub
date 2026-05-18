@@ -1,8 +1,9 @@
-import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { useAuth } from "@/hooks/use-auth";
+import { useRequireAuth } from "@/hooks/use-require-auth";
 import { timeAgo } from "@/lib/format";
 import { MessageSquare, ShieldCheck } from "lucide-react";
 
@@ -28,15 +29,11 @@ interface PartyMap {
 }
 
 function MessagesLayout() {
-  const { user, loading } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
+  const { ready } = useRequireAuth("/messages");
   const [convs, setConvs] = useState<ConvRow[]>([]);
   const [parties, setParties] = useState<PartyMap>({});
   const [listLoading, setListLoading] = useState(true);
-
-  useEffect(() => {
-    if (!loading && !user) navigate({ to: "/auth", search: { mode: "login", redirect: "/messages" } });
-  }, [user, loading, navigate]);
 
   const load = async () => {
     if (!user) return;
@@ -72,7 +69,7 @@ function MessagesLayout() {
     return () => { void supabase.removeChannel(channel); };
   }, [user]);
 
-  if (!user) return <SiteShell><div className="px-6 py-32 text-center text-muted-foreground">Loading…</div></SiteShell>;
+  if (!ready || !user) return <SiteShell><div className="px-6 py-32 text-center text-muted-foreground">Loading…</div></SiteShell>;
 
   return (
     <SiteShell>

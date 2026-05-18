@@ -5,7 +5,7 @@
 
 declare global {
   interface Window {
-    Razorpay?: new (opts: RazorpayOptions) => { open: () => void; on: (e: string, cb: (r: unknown) => void) => void };
+    Razorpay: new (opts: Record<string, unknown>) => { open(): void; on?(e: string, cb: (r: unknown) => void): void };
   }
 }
 
@@ -55,6 +55,6 @@ export function loadRazorpayScript(): Promise<void> {
 export async function openRazorpayCheckout(opts: RazorpayOptions) {
   await loadRazorpayScript();
   if (!window.Razorpay) throw new Error("Razorpay SDK not available");
-  const rzp = new window.Razorpay(opts);
+  const rzp = new window.Razorpay(opts as unknown as Record<string, unknown>);
   rzp.open();
 }

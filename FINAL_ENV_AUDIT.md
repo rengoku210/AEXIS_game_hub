@@ -30,7 +30,7 @@ No **service role** key was retrieved or written to any `VITE_*` variable or cli
 | `.env.example` | Committed template: real **public** URL + anon key; **empty** service role and Razorpay secrets. |
 | `.gitignore` | `!.env.example` so the example file can be tracked while `.env` / `.env.*` stay private. |
 
-**WordPress:** `VITE_WORDPRESS_API_BASE` is set to `https://cms.aexis.com/wp-json/aexis/v1` in production/staging/example per `DEPLOY_PRODUCTION.md`. A live HTTP check returned **503** at audit time — if listings depend on WP, confirm that host is up or point the variable at a working REST base.
+**WordPress:** `VITE_WORDPRESS_API_BASE` is set to `https://cms.huxzain.com/wp-json/huxzain/v1` in production/staging/example per `DEPLOY_PRODUCTION.md`. A live HTTP check returned **503** at audit time — if listings depend on WP, confirm that host is up or point the variable at a working REST base.
 
 ---
 
@@ -68,7 +68,7 @@ Command: `$env:VERCEL = "1"; npm run build`
 
 - `VITE_SUPABASE_URL` = `https://fqeoracqywgwbvwijwqq.supabase.co`
 - `VITE_SUPABASE_ANON_KEY` = same legacy anon JWT as in `.env.example`
-- `VITE_WORDPRESS_API_BASE` = your live REST base (e.g. `https://cms.aexis.com/wp-json/aexis/v1` if that is correct)
+- `VITE_WORDPRESS_API_BASE` = your live REST base (e.g. `https://cms.huxzain.com/wp-json/huxzain/v1` if that is correct)
 
 Optional CLI workflow after `npx vercel link`:
 

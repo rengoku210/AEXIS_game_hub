@@ -1,31 +1,46 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { useAuth } from "@/hooks/use-auth";
+import { useRequireAuth } from "@/hooks/use-require-auth";
 import { formatINR, timeAgo } from "@/lib/format";
 
 export const Route = createFileRoute("/account")({
   component: AccountPage,
 });
 
-interface Order { id: string; order_number: string; listing_title: string; amount_inr: number; status: string; created_at: string; }
+interface Order {
+  id: string;
+  order_number: string;
+  listing_title: string;
+  amount_inr: number;
+  status: string;
+  created_at: string;
+}
 
 function AccountPage() {
-  const { user, profile, loading } = useAuth();
-  const navigate = useNavigate();
+  const { user, profile } = useAuth();
+  const { ready } = useRequireAuth("/account");
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
-    if (!loading && !user) navigate({ to: "/auth", search: { mode: "login", redirect: "/account" } });
-  }, [user, loading, navigate]);
-
-  useEffect(() => {
     if (!user) return;
-    void supabase.from("orders").select("id,order_number,listing_title,amount_inr,status,created_at").eq("buyer_id", user.id).order("created_at", { ascending: false }).then(({ data }) => setOrders((data ?? []) as Order[]));
+    void supabase
+      .from("orders")
+      .select("id,order_number,listing_title,amount_inr,status,created_at")
+      .eq("buyer_id", user.id)
+      .order("created_at", { ascending: false })
+      .then(({ data }) => setOrders((data ?? []) as Order[]));
   }, [user]);
 
-  if (!user) return <SiteShell><div className="px-6 py-32 text-center text-muted-foreground">Loading…</div></SiteShell>;
+  if (!ready || !user) {
+    return (
+      <SiteShell>
+        <div className="px-6 py-32 text-center text-muted-foreground">Loading…</div>
+      </SiteShell>
+    );
+  }
 
   return (
     <SiteShell>
@@ -34,11 +49,17 @@ function AccountPage() {
         <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Welcome, {profile?.display_name}</h1>
 
         <div className="mt-8 grid md:grid-cols-3 gap-4">
-          <Link to="/marketplace" className="glass rounded-2xl p-6 hover:border-crimson/40 border border-border transition-colors">
+          <Link
+            to="/marketplace"
+            className="glass rounded-2xl p-6 hover:border-crimson/40 border border-border transition-colors"
+          >
             <p className="font-mono text-[10px] uppercase tracking-widest text-crimson mb-2">Browse</p>
             <p className="font-semibold">Explore marketplace</p>
           </Link>
-          <Link to="/sell" className="glass rounded-2xl p-6 hover:border-crimson/40 border border-border transition-colors">
+          <Link
+            to="/sell"
+            className="glass rounded-2xl p-6 hover:border-crimson/40 border border-border transition-colors"
+          >
             <p className="font-mono text-[10px] uppercase tracking-widest text-crimson mb-2">Earn</p>
             <p className="font-semibold">Become a seller</p>
           </Link>
@@ -64,14 +85,27 @@ function AccountPage() {
               </thead>
               <tbody>
                 {orders.map((o) => (
-                  <tr key={o.id} className="border-b border-border last:border-0 hover:bg-surface-elevated">
+                  <tr
+                    key={o.id}
+                    className="border-b border-border last:border-0 hover:bg-surface-elevated"
+                  >
                     <td className="px-5 py-4 font-mono text-xs">
-                      <Link to="/account/orders/$orderId" params={{ orderId: o.id }} className="hover:text-crimson">{o.order_number}</Link>
+                      <Link
+                        to="/account/orders/$orderId"
+                        params={{ orderId: o.id }}
+                        className="hover:text-crimson"
+                      >
+                        {o.order_number}
+                      </Link>
                       <div className="text-muted-foreground">{timeAgo(o.created_at)}</div>
                     </td>
                     <td className="px-5 py-4">{o.listing_title}</td>
-                    <td className="px-5 py-4 text-right tabular-nums font-semibold">{formatINR(o.amount_inr)}</td>
-                    <td className="px-5 py-4 font-mono text-[10px] uppercase tracking-widest">{o.status.replace("_", " ")}</td>
+                    <td className="px-5 py-4 text-right tabular-nums font-semibold">
+                      {formatINR(o.amount_inr)}
+                    </td>
+                    <td className="px-5 py-4 font-mono text-[10px] uppercase tracking-widest">
+                      {o.status.replace("_", " ")}
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -56,7 +56,7 @@ function ListingDetail() {
         key: order.razorpayKeyId,
         amount: order.amountInPaise,
         currency: order.currency,
-        name: "Aexis",
+        name: "HUXZAIN",
         description: order.listingTitle,
         order_id: order.razorpayOrderId,
         prefill: {
@@ -64,7 +64,7 @@ function ListingDetail() {
           email: order.buyerEmail ?? undefined,
         },
         theme: { color: "#7a0a14" },
-        notes: { aexis_order_number: order.orderNumber },
+        notes: { huxzain_order_number: order.orderNumber },
         handler: async (resp) => {
           try {
             await verifyRazorpayPayment(resp);
@@ -140,14 +140,14 @@ function ListingDetail() {
             "sku": listing.id,
             "offers": {
               "@type": "Offer",
-              "url": `https://aexis.com/listing/${listing.slug}`,
+              "url": `https://huxzain.com/listing/${listing.slug}`,
               "priceCurrency": "INR",
               "price": listing.price_inr,
               "itemCondition": "https://schema.org/NewCondition",
               "availability": "https://schema.org/InStock",
               "seller": {
                 "@type": "Organization",
-                "name": listing.profiles?.display_name || "Aexis Vendor"
+                "name": listing.profiles?.display_name || "HUXZAIN Vendor"
               }
             },
             ...(listing.rating_count > 0 ? {

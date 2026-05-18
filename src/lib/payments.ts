@@ -1,8 +1,7 @@
-import { supabase } from "@/integrations/supabase/client";
+import { getAccessToken } from "@/lib/auth/api";
 
 export async function createRazorpayOrder(data: { listing_id: string; buyer_notes?: string }) {
-  const { data: session } = await supabase.auth.getSession();
-  const token = session.session?.access_token;
+  const token = await getAccessToken();
   if (!token) throw new Error("Not authenticated");
 
   const res = await fetch("/api/razorpay/create", {
@@ -22,9 +21,8 @@ export async function createRazorpayOrder(data: { listing_id: string; buyer_note
   return await res.json();
 }
 
-export async function verifyRazorpayPayment(data: any) {
-  const { data: session } = await supabase.auth.getSession();
-  const token = session.session?.access_token;
+export async function verifyRazorpayPayment(data: Record<string, unknown>) {
+  const token = await getAccessToken();
   if (!token) throw new Error("Not authenticated");
 
   const res = await fetch("/api/razorpay/verify", {
