@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { z } from "zod";
-import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import { supabaseAdmin } from "../../src/integrations/supabase/client.server";
 import { createHash, randomInt } from "crypto";
-import { sendResendEmail, SUPPORT_EMAIL } from "@/lib/server/email";
+import { sendResendEmail, SUPPORT_EMAIL } from "../../src/lib/server/email";
 
 const OTP_EXPIRY_MINUTES = Number(process.env.OTP_EXPIRY_MINUTES ?? "5");
 const RESEND_COOLDOWN_SECONDS = Number(process.env.OTP_RESEND_COOLDOWN_SECONDS ?? "60");
@@ -110,109 +110,103 @@ function otpEmailHtml(otp: string, expiresInMin: number, purpose: z.infer<typeof
     </td></tr>
   </table>
 </body>
-</html>`;
+</html>\`;
 }
 
-export const Route = createFileRoute("/api/otp/send")({
-  server: {
-    handlers: {
-      POST: async ({ request }) => {
-        const json = (msg: object, status = 200) =>
-          new Response(JSON.stringify(msg), { status, headers: { "Content-Type": "application/json" } });
+export default async function handler(request: VercelRequest, response: VercelResponse) {
+  if (request.method !== "POST") {
+    return response.status(405).json({ error: "Method not allowed" });
+  }
 
-        const body = await request.json().catch(() => null);
-        const parsed = sendInput.safeParse(body);
-        if (!parsed.success) return json({ error: "Invalid verification request." }, 400);
+  const parsed = sendInput.safeParse(request.body);
+  if (!parsed.success) return response.status(400).json({ error: "Invalid verification request." });
 
-        const { email, purpose } = parsed.data;
+  const { email, purpose } = parsed.data;
 
-        const { data: existingOtp, error: otpQueryErr } = await (supabaseAdmin as any)
-          .from("email_otps")
-          .select("last_resent_at,resend_count,created_at")
-          .eq("email", email)
-          .eq("purpose", purpose)
-          .eq("used", false)
-          .gte("expires_at", new Date().toISOString())
-          .order("created_at", { ascending: false })
-          .limit(1)
-          .maybeSingle();
+  const { data: existingOtp, error: otpQueryErr } = await (supabaseAdmin as any)
+    .from("email_otps")
+    .select("last_resent_at,resend_count,created_at")
+    .eq("email", email)
+    .eq("purpose", purpose)
+    .eq("used", false)
+    .gte("expires_at", new Date().toISOString())
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
 
-        if (otpQueryErr && otpQueryErr.code === "42P01") {
-          console.error("[OTP] email_otps table not found");
-          return json({ error: "Server verification storage is not configured." }, 500);
-        }
+  if (otpQueryErr && otpQueryErr.code === "42P01") {
+    console.error("[OTP] email_otps table not found");
+    return response.status(500).json({ error: "Server verification storage is not configured." });
+  }
 
-        if (existingOtp) {
-          const lastSent = new Date(existingOtp.last_resent_at ?? existingOtp.created_at);
-          const secondsSinceLast = (Date.now() - lastSent.getTime()) / 1000;
-          if (secondsSinceLast < RESEND_COOLDOWN_SECONDS) {
-            const wait = Math.ceil(RESEND_COOLDOWN_SECONDS - secondsSinceLast);
-            return json({ error: `Please wait ${wait}s before requesting another code.`, cooldown: wait }, 429);
-          }
-        }
+  if (existingOtp) {
+    const lastSent = new Date(existingOtp.last_resent_at ?? existingOtp.created_at);
+    const secondsSinceLast = (Date.now() - lastSent.getTime()) / 1000;
+    if (secondsSinceLast < RESEND_COOLDOWN_SECONDS) {
+      const wait = Math.ceil(RESEND_COOLDOWN_SECONDS - secondsSinceLast);
+      return response.status(429).json({ error: \`Please wait \${wait}s before requesting another code.\`, cooldown: wait });
+    }
+  }
 
-        const { count } = await (supabaseAdmin as any)
-          .from("email_otps")
-          .select("id", { count: "exact", head: true })
-          .eq("email", email)
-          .eq("purpose", purpose)
-          .gte("created_at", new Date(Date.now() - 3600_000).toISOString());
+  const { count } = await (supabaseAdmin as any)
+    .from("email_otps")
+    .select("id", { count: "exact", head: true })
+    .eq("email", email)
+    .eq("purpose", purpose)
+    .gte("created_at", new Date(Date.now() - 3600_000).toISOString());
 
-        if ((count ?? 0) >= MAX_RESENDS_PER_HOUR) {
-          return json({ error: "Too many verification requests. Please try again in an hour." }, 429);
-        }
+  if ((count ?? 0) >= MAX_RESENDS_PER_HOUR) {
+    return response.status(429).json({ error: "Too many verification requests. Please try again in an hour." });
+  }
 
-        const otp = generateOtp();
-        const expiresAt = new Date(Date.now() + OTP_EXPIRY_MINUTES * 60_000).toISOString();
+  const otp = generateOtp();
+  const expiresAt = new Date(Date.now() + OTP_EXPIRY_MINUTES * 60_000).toISOString();
 
-        await (supabaseAdmin as any)
-          .from("email_otps")
-          .update({ used: true })
-          .eq("email", email)
-          .eq("purpose", purpose)
-          .eq("used", false);
+  await (supabaseAdmin as any)
+    .from("email_otps")
+    .update({ used: true })
+    .eq("email", email)
+    .eq("purpose", purpose)
+    .eq("used", false);
 
-        const { error: insertErr } = await (supabaseAdmin as any).from("email_otps").insert({
-          email,
-          purpose,
-          otp_hash: hashOtp(otp),
-          expires_at: expiresAt,
-          last_resent_at: new Date().toISOString(),
-          ip_address:
-            request.headers.get("cf-connecting-ip") ??
-            request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-            request.headers.get("x-real-ip"),
-          user_agent: request.headers.get("user-agent"),
-        });
+  const ip = (request.headers["cf-connecting-ip"] as string) ??
+    (request.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() ??
+    (request.headers["x-real-ip"] as string);
 
-        if (insertErr) {
-          console.error("[OTP] DB insert error:", insertErr);
-          return json({ error: "Failed to generate verification code." }, 500);
-        }
+  const { error: insertErr } = await (supabaseAdmin as any).from("email_otps").insert({
+    email,
+    purpose,
+    otp_hash: hashOtp(otp),
+    expires_at: expiresAt,
+    last_resent_at: new Date().toISOString(),
+    ip_address: ip,
+    user_agent: request.headers["user-agent"],
+  });
 
-        try {
-          await sendResendEmail({
-            to: email,
-            subject: purposeCopy(purpose).subject,
-            html: otpEmailHtml(otp, OTP_EXPIRY_MINUTES, purpose),
-          });
-        } catch (err: any) {
-          console.error("[OTP] Resend delivery error:", err?.message);
-          await (supabaseAdmin as any)
-            .from("email_otps")
-            .update({ used: true })
-            .eq("email", email)
-            .eq("purpose", purpose)
-            .eq("otp_hash", hashOtp(otp));
-          const isDev = process.env.NODE_ENV !== "production";
-          return json(
-            { error: isDev ? `Email send failed: ${err?.message}` : "Failed to send verification email. Please try again." },
-            502,
-          );
-        }
+  if (insertErr) {
+    console.error("[OTP] DB insert error:", insertErr);
+    return response.status(500).json({ error: "Failed to generate verification code." });
+  }
 
-        return json({ ok: true, expiresIn: OTP_EXPIRY_MINUTES * 60, cooldown: RESEND_COOLDOWN_SECONDS });
-      },
-    },
-  },
-});
+  try {
+    await sendResendEmail({
+      to: email,
+      subject: purposeCopy(purpose).subject,
+      html: otpEmailHtml(otp, OTP_EXPIRY_MINUTES, purpose),
+    });
+  } catch (err: any) {
+    console.error("[OTP] Resend delivery error:", err?.message);
+    await (supabaseAdmin as any)
+      .from("email_otps")
+      .update({ used: true })
+      .eq("email", email)
+      .eq("purpose", purpose)
+      .eq("otp_hash", hashOtp(otp));
+    const isDev = process.env.NODE_ENV !== "production";
+    return response.status(502).json(
+      { error: isDev ? \`Email send failed: \${err?.message}\` : "Failed to send verification email. Please try again." }
+    );
+  }
+
+  return response.status(200).json({ ok: true, expiresIn: OTP_EXPIRY_MINUTES * 60, cooldown: RESEND_COOLDOWN_SECONDS });
+}

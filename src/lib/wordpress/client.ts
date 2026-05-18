@@ -2,7 +2,7 @@ import { WPCategory, WPListing, WPNewsPost, WPPaginatedResponse } from "./types"
 
 const WP_URL =
   (import.meta.env.VITE_WORDPRESS_API_BASE as string | undefined)?.trim() ||
-  "http://huxzain.local/wp-json/huxzain/v1";
+  "https://huxzain.shop/wp-json/huxzain/v1";
 
 
 export class WordPressClient {
