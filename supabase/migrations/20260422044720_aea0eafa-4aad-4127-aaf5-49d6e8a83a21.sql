@@ -1,1 +1,0 @@
-DROP POLICY IF EXISTS "listing_images_public_read" ON storage.objects;

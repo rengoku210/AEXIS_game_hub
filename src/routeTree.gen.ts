@@ -9,69 +9,123 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SellerRouteImport } from './routes/seller'
-import { Route as SellRouteImport } from './routes/sell'
-import { Route as MessagesRouteImport } from './routes/messages'
-import { Route as MarketplaceRouteImport } from './routes/marketplace'
+import { Route as VerifyEmailRouteImport } from './routes/verify-email'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SellerPanelRouteImport } from './routes/seller-panel'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as OrdersRouteImport } from './routes/orders'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CategoriesRouteImport } from './routes/categories'
+import { Route as CareersRouteImport } from './routes/careers'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SellerIndexRouteImport } from './routes/seller.index'
-import { Route as MessagesIndexRouteImport } from './routes/messages.index'
-import { Route as AdminIndexRouteImport } from './routes/admin.index'
-import { Route as SellerPlansRouteImport } from './routes/seller.plans'
-import { Route as SellerOrdersRouteImport } from './routes/seller.orders'
-import { Route as SellerNewRouteImport } from './routes/seller.new'
-import { Route as SellerKycRouteImport } from './routes/seller.kyc'
-import { Route as SellerUsernameRouteImport } from './routes/seller.$username'
-import { Route as MessagesConversationIdRouteImport } from './routes/messages.$conversationId'
-import { Route as ListingSlugRouteImport } from './routes/listing.$slug'
-import { Route as LegalTermsRouteImport } from './routes/legal.terms'
-import { Route as LegalSellerAgreementRouteImport } from './routes/legal.seller-agreement'
-import { Route as LegalRefundRouteImport } from './routes/legal.refund'
-import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
-import { Route as LegalDisclaimerRouteImport } from './routes/legal.disclaimer'
+import { Route as ProductIdRouteImport } from './routes/product.$id'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as AuthVerifiedRouteImport } from './routes/auth.verified'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
-import { Route as ApiContactRouteImport } from './routes/api.contact'
-import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
-import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
-import { Route as AdminModerationRouteImport } from './routes/admin.moderation'
-import { Route as AdminKycRouteImport } from './routes/admin.kyc'
-import { Route as AdminDiagnosticsRouteImport } from './routes/admin.diagnostics'
-import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
-import { Route as ApiSellerSubVerifyRouteImport } from './routes/api.seller-sub.verify'
-import { Route as ApiSellerSubCreateRouteImport } from './routes/api.seller-sub.create'
-import { Route as ApiRazorpayVerifyRouteImport } from './routes/api.razorpay.verify'
-import { Route as ApiRazorpayCreateRouteImport } from './routes/api.razorpay.create'
-import { Route as ApiRazorpayConfigRouteImport } from './routes/api.razorpay.config'
-import { Route as ApiPublicRazorpayWebhookRouteImport } from './routes/api.public.razorpay-webhook'
-import { Route as ApiOtpVerifyRouteImport } from './routes/api.otp.verify'
-import { Route as ApiOtpSendRouteImport } from './routes/api.otp.send'
-import { Route as AdminOrdersOrderIdRouteImport } from './routes/admin.orders.$orderId'
-import { Route as AccountOrdersOrderIdRouteImport } from './routes/account.orders.$orderId'
+import { Route as AuthenticatedSellerRouteImport } from './routes/_authenticated/seller'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedSellerIndexRouteImport } from './routes/_authenticated/seller.index'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedSellerWithdrawalsRouteImport } from './routes/_authenticated/seller.withdrawals'
+import { Route as AuthenticatedSellerWalletRouteImport } from './routes/_authenticated/seller.wallet'
+import { Route as AuthenticatedSellerVerificationRouteImport } from './routes/_authenticated/seller.verification'
+import { Route as AuthenticatedSellerTransactionsRouteImport } from './routes/_authenticated/seller.transactions'
+import { Route as AuthenticatedSellerSupportRouteImport } from './routes/_authenticated/seller.support'
+import { Route as AuthenticatedSellerSubscriptionRouteImport } from './routes/_authenticated/seller.subscription'
+import { Route as AuthenticatedSellerStoreRouteImport } from './routes/_authenticated/seller.store'
+import { Route as AuthenticatedSellerSettingsRouteImport } from './routes/_authenticated/seller.settings'
+import { Route as AuthenticatedSellerSecurityRouteImport } from './routes/_authenticated/seller.security'
+import { Route as AuthenticatedSellerReviewsRouteImport } from './routes/_authenticated/seller.reviews'
+import { Route as AuthenticatedSellerOrdersRouteImport } from './routes/_authenticated/seller.orders'
+import { Route as AuthenticatedSellerNotificationsRouteImport } from './routes/_authenticated/seller.notifications'
+import { Route as AuthenticatedSellerMessagesRouteImport } from './routes/_authenticated/seller.messages'
+import { Route as AuthenticatedSellerListingsRouteImport } from './routes/_authenticated/seller.listings'
+import { Route as AuthenticatedSellerEarningsRouteImport } from './routes/_authenticated/seller.earnings'
+import { Route as AuthenticatedSellerDisputesRouteImport } from './routes/_authenticated/seller.disputes'
+import { Route as AuthenticatedSellerDeliveryRouteImport } from './routes/_authenticated/seller.delivery'
+import { Route as AuthenticatedSellerCouponsRouteImport } from './routes/_authenticated/seller.coupons'
+import { Route as AuthenticatedSellerBoostsRouteImport } from './routes/_authenticated/seller.boosts'
+import { Route as AuthenticatedSellerAnalyticsRouteImport } from './routes/_authenticated/seller.analytics'
+import { Route as AuthenticatedSellerAdsRouteImport } from './routes/_authenticated/seller.ads'
+import { Route as AuthenticatedCheckoutVerifyPaymentRouteImport } from './routes/_authenticated/checkout.verify-payment'
+import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin.users'
+import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin.settings'
+import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
+import { Route as AuthenticatedAdminPaymentsRouteImport } from './routes/_authenticated/admin.payments'
+import { Route as AuthenticatedAdminListingsRouteImport } from './routes/_authenticated/admin.listings'
+import { Route as AuthenticatedAdminDisputesRouteImport } from './routes/_authenticated/admin.disputes'
+import { Route as AuthenticatedAdminCategoriesRouteImport } from './routes/_authenticated/admin/categories'
+import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
 
-const SellerRoute = SellerRouteImport.update({
-  id: '/seller',
-  path: '/seller',
+const VerifyEmailRoute = VerifyEmailRouteImport.update({
+  id: '/verify-email',
+  path: '/verify-email',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SellRoute = SellRouteImport.update({
-  id: '/sell',
-  path: '/sell',
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MessagesRoute = MessagesRouteImport.update({
-  id: '/messages',
-  path: '/messages',
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MarketplaceRoute = MarketplaceRouteImport.update({
-  id: '/marketplace',
-  path: '/marketplace',
+const SellerPanelRoute = SellerPanelRouteImport.update({
+  id: '/seller-panel',
+  path: '/seller-panel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersRoute = OrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -79,14 +133,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
+const CategoriesRoute = CategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountRoute = AccountRouteImport.update({
@@ -99,84 +158,18 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SellerIndexRoute = SellerIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => SellerRoute,
-} as any)
-const MessagesIndexRoute = MessagesIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => MessagesRoute,
-} as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AdminRoute,
-} as any)
-const SellerPlansRoute = SellerPlansRouteImport.update({
-  id: '/plans',
-  path: '/plans',
-  getParentRoute: () => SellerRoute,
-} as any)
-const SellerOrdersRoute = SellerOrdersRouteImport.update({
-  id: '/orders',
-  path: '/orders',
-  getParentRoute: () => SellerRoute,
-} as any)
-const SellerNewRoute = SellerNewRouteImport.update({
-  id: '/new',
-  path: '/new',
-  getParentRoute: () => SellerRoute,
-} as any)
-const SellerKycRoute = SellerKycRouteImport.update({
-  id: '/kyc',
-  path: '/kyc',
-  getParentRoute: () => SellerRoute,
-} as any)
-const SellerUsernameRoute = SellerUsernameRouteImport.update({
-  id: '/$username',
-  path: '/$username',
-  getParentRoute: () => SellerRoute,
-} as any)
-const MessagesConversationIdRoute = MessagesConversationIdRouteImport.update({
-  id: '/$conversationId',
-  path: '/$conversationId',
-  getParentRoute: () => MessagesRoute,
-} as any)
-const ListingSlugRoute = ListingSlugRouteImport.update({
-  id: '/listing/$slug',
-  path: '/listing/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalTermsRoute = LegalTermsRouteImport.update({
-  id: '/legal/terms',
-  path: '/legal/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalSellerAgreementRoute = LegalSellerAgreementRouteImport.update({
-  id: '/legal/seller-agreement',
-  path: '/legal/seller-agreement',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalRefundRoute = LegalRefundRouteImport.update({
-  id: '/legal/refund',
-  path: '/legal/refund',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
-  id: '/legal/privacy',
-  path: '/legal/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalDisclaimerRoute = LegalDisclaimerRouteImport.update({
-  id: '/legal/disclaimer',
-  path: '/legal/disclaimer',
+const ProductIdRoute = ProductIdRouteImport.update({
+  id: '/product/$id',
+  path: '/product/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
@@ -184,233 +177,392 @@ const CategorySlugRoute = CategorySlugRouteImport.update({
   path: '/category/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthVerifiedRoute = AuthVerifiedRouteImport.update({
+  id: '/auth/verified',
+  path: '/auth/verified',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthCallbackRoute = AuthCallbackRouteImport.update({
-  id: '/callback',
-  path: '/callback',
-  getParentRoute: () => AuthRoute,
-} as any)
-const ApiContactRoute = ApiContactRouteImport.update({
-  id: '/api/contact',
-  path: '/api/contact',
+  id: '/auth/callback',
+  path: '/auth/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
-  id: '/payments',
-  path: '/payments',
-  getParentRoute: () => AdminRoute,
+const AuthenticatedSellerRoute = AuthenticatedSellerRouteImport.update({
+  id: '/seller',
+  path: '/seller',
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
-const AdminOrdersRoute = AdminOrdersRouteImport.update({
-  id: '/orders',
-  path: '/orders',
-  getParentRoute: () => AdminRoute,
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
-const AdminModerationRoute = AdminModerationRouteImport.update({
-  id: '/moderation',
-  path: '/moderation',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminKycRoute = AdminKycRouteImport.update({
-  id: '/kyc',
-  path: '/kyc',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminDiagnosticsRoute = AdminDiagnosticsRouteImport.update({
-  id: '/diagnostics',
-  path: '/diagnostics',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
-  id: '/analytics',
-  path: '/analytics',
-  getParentRoute: () => AdminRoute,
-} as any)
-const ApiSellerSubVerifyRoute = ApiSellerSubVerifyRouteImport.update({
-  id: '/api/seller-sub/verify',
-  path: '/api/seller-sub/verify',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiSellerSubCreateRoute = ApiSellerSubCreateRouteImport.update({
-  id: '/api/seller-sub/create',
-  path: '/api/seller-sub/create',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiRazorpayVerifyRoute = ApiRazorpayVerifyRouteImport.update({
-  id: '/api/razorpay/verify',
-  path: '/api/razorpay/verify',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiRazorpayCreateRoute = ApiRazorpayCreateRouteImport.update({
-  id: '/api/razorpay/create',
-  path: '/api/razorpay/create',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiRazorpayConfigRoute = ApiRazorpayConfigRouteImport.update({
-  id: '/api/razorpay/config',
-  path: '/api/razorpay/config',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPublicRazorpayWebhookRoute =
-  ApiPublicRazorpayWebhookRouteImport.update({
-    id: '/api/public/razorpay-webhook',
-    path: '/api/public/razorpay-webhook',
-    getParentRoute: () => rootRouteImport,
+const AuthenticatedSellerIndexRoute =
+  AuthenticatedSellerIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSellerRoute,
   } as any)
-const ApiOtpVerifyRoute = ApiOtpVerifyRouteImport.update({
-  id: '/api/otp/verify',
-  path: '/api/otp/verify',
-  getParentRoute: () => rootRouteImport,
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
-const ApiOtpSendRoute = ApiOtpSendRouteImport.update({
-  id: '/api/otp/send',
-  path: '/api/otp/send',
-  getParentRoute: () => rootRouteImport,
+const AuthenticatedSellerWithdrawalsRoute =
+  AuthenticatedSellerWithdrawalsRouteImport.update({
+    id: '/withdrawals',
+    path: '/withdrawals',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerWalletRoute =
+  AuthenticatedSellerWalletRouteImport.update({
+    id: '/wallet',
+    path: '/wallet',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerVerificationRoute =
+  AuthenticatedSellerVerificationRouteImport.update({
+    id: '/verification',
+    path: '/verification',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerTransactionsRoute =
+  AuthenticatedSellerTransactionsRouteImport.update({
+    id: '/transactions',
+    path: '/transactions',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerSupportRoute =
+  AuthenticatedSellerSupportRouteImport.update({
+    id: '/support',
+    path: '/support',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerSubscriptionRoute =
+  AuthenticatedSellerSubscriptionRouteImport.update({
+    id: '/subscription',
+    path: '/subscription',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerStoreRoute =
+  AuthenticatedSellerStoreRouteImport.update({
+    id: '/store',
+    path: '/store',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerSettingsRoute =
+  AuthenticatedSellerSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerSecurityRoute =
+  AuthenticatedSellerSecurityRouteImport.update({
+    id: '/security',
+    path: '/security',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerReviewsRoute =
+  AuthenticatedSellerReviewsRouteImport.update({
+    id: '/reviews',
+    path: '/reviews',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerOrdersRoute =
+  AuthenticatedSellerOrdersRouteImport.update({
+    id: '/orders',
+    path: '/orders',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerNotificationsRoute =
+  AuthenticatedSellerNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerMessagesRoute =
+  AuthenticatedSellerMessagesRouteImport.update({
+    id: '/messages',
+    path: '/messages',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerListingsRoute =
+  AuthenticatedSellerListingsRouteImport.update({
+    id: '/listings',
+    path: '/listings',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerEarningsRoute =
+  AuthenticatedSellerEarningsRouteImport.update({
+    id: '/earnings',
+    path: '/earnings',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerDisputesRoute =
+  AuthenticatedSellerDisputesRouteImport.update({
+    id: '/disputes',
+    path: '/disputes',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerDeliveryRoute =
+  AuthenticatedSellerDeliveryRouteImport.update({
+    id: '/delivery',
+    path: '/delivery',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerCouponsRoute =
+  AuthenticatedSellerCouponsRouteImport.update({
+    id: '/coupons',
+    path: '/coupons',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerBoostsRoute =
+  AuthenticatedSellerBoostsRouteImport.update({
+    id: '/boosts',
+    path: '/boosts',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerAnalyticsRoute =
+  AuthenticatedSellerAnalyticsRouteImport.update({
+    id: '/analytics',
+    path: '/analytics',
+    getParentRoute: () => AuthenticatedSellerRoute,
+  } as any)
+const AuthenticatedSellerAdsRoute = AuthenticatedSellerAdsRouteImport.update({
+  id: '/ads',
+  path: '/ads',
+  getParentRoute: () => AuthenticatedSellerRoute,
 } as any)
-const AdminOrdersOrderIdRoute = AdminOrdersOrderIdRouteImport.update({
-  id: '/$orderId',
-  path: '/$orderId',
-  getParentRoute: () => AdminOrdersRoute,
+const AuthenticatedCheckoutVerifyPaymentRoute =
+  AuthenticatedCheckoutVerifyPaymentRouteImport.update({
+    id: '/checkout/verify-payment',
+    path: '/checkout/verify-payment',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
-const AccountOrdersOrderIdRoute = AccountOrdersOrderIdRouteImport.update({
-  id: '/orders/$orderId',
-  path: '/orders/$orderId',
-  getParentRoute: () => AccountRoute,
-} as any)
+const AuthenticatedAdminSettingsRoute =
+  AuthenticatedAdminSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminReportsRoute =
+  AuthenticatedAdminReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPaymentsRoute =
+  AuthenticatedAdminPaymentsRouteImport.update({
+    id: '/payments',
+    path: '/payments',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminListingsRoute =
+  AuthenticatedAdminListingsRouteImport.update({
+    id: '/listings',
+    path: '/listings',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminDisputesRoute =
+  AuthenticatedAdminDisputesRouteImport.update({
+    id: '/disputes',
+    path: '/disputes',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCategoriesRoute =
+  AuthenticatedAdminCategoriesRouteImport.update({
+    id: '/categories',
+    path: '/categories',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminAnalyticsRoute =
+  AuthenticatedAdminAnalyticsRouteImport.update({
+    id: '/analytics',
+    path: '/analytics',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/account': typeof AccountRouteWithChildren
-  '/admin': typeof AdminRouteWithChildren
-  '/auth': typeof AuthRouteWithChildren
+  '/account': typeof AccountRoute
+  '/blog': typeof BlogRoute
+  '/careers': typeof CareersRoute
+  '/categories': typeof CategoriesRoute
   '/contact': typeof ContactRoute
-  '/marketplace': typeof MarketplaceRoute
-  '/messages': typeof MessagesRouteWithChildren
-  '/sell': typeof SellRoute
-  '/seller': typeof SellerRouteWithChildren
-  '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/diagnostics': typeof AdminDiagnosticsRoute
-  '/admin/kyc': typeof AdminKycRoute
-  '/admin/moderation': typeof AdminModerationRoute
-  '/admin/orders': typeof AdminOrdersRouteWithChildren
-  '/admin/payments': typeof AdminPaymentsRoute
-  '/api/contact': typeof ApiContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/orders': typeof OrdersRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/seller-panel': typeof SellerPanelRoute
+  '/signup': typeof SignupRoute
+  '/terms': typeof TermsRoute
+  '/verify-email': typeof VerifyEmailRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/seller': typeof AuthenticatedSellerRouteWithChildren
   '/auth/callback': typeof AuthCallbackRoute
+  '/auth/verified': typeof AuthVerifiedRoute
   '/category/$slug': typeof CategorySlugRoute
-  '/legal/disclaimer': typeof LegalDisclaimerRoute
-  '/legal/privacy': typeof LegalPrivacyRoute
-  '/legal/refund': typeof LegalRefundRoute
-  '/legal/seller-agreement': typeof LegalSellerAgreementRoute
-  '/legal/terms': typeof LegalTermsRoute
-  '/listing/$slug': typeof ListingSlugRoute
-  '/messages/$conversationId': typeof MessagesConversationIdRoute
-  '/seller/$username': typeof SellerUsernameRoute
-  '/seller/kyc': typeof SellerKycRoute
-  '/seller/new': typeof SellerNewRoute
-  '/seller/orders': typeof SellerOrdersRoute
-  '/seller/plans': typeof SellerPlansRoute
-  '/admin/': typeof AdminIndexRoute
-  '/messages/': typeof MessagesIndexRoute
-  '/seller/': typeof SellerIndexRoute
-  '/account/orders/$orderId': typeof AccountOrdersOrderIdRoute
-  '/admin/orders/$orderId': typeof AdminOrdersOrderIdRoute
-  '/api/otp/send': typeof ApiOtpSendRoute
-  '/api/otp/verify': typeof ApiOtpVerifyRoute
-  '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
-  '/api/razorpay/config': typeof ApiRazorpayConfigRoute
-  '/api/razorpay/create': typeof ApiRazorpayCreateRoute
-  '/api/razorpay/verify': typeof ApiRazorpayVerifyRoute
-  '/api/seller-sub/create': typeof ApiSellerSubCreateRoute
-  '/api/seller-sub/verify': typeof ApiSellerSubVerifyRoute
+  '/product/$id': typeof ProductIdRoute
+  '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/categories': typeof AuthenticatedAdminCategoriesRoute
+  '/admin/disputes': typeof AuthenticatedAdminDisputesRoute
+  '/admin/listings': typeof AuthenticatedAdminListingsRoute
+  '/admin/payments': typeof AuthenticatedAdminPaymentsRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/checkout/verify-payment': typeof AuthenticatedCheckoutVerifyPaymentRoute
+  '/seller/ads': typeof AuthenticatedSellerAdsRoute
+  '/seller/analytics': typeof AuthenticatedSellerAnalyticsRoute
+  '/seller/boosts': typeof AuthenticatedSellerBoostsRoute
+  '/seller/coupons': typeof AuthenticatedSellerCouponsRoute
+  '/seller/delivery': typeof AuthenticatedSellerDeliveryRoute
+  '/seller/disputes': typeof AuthenticatedSellerDisputesRoute
+  '/seller/earnings': typeof AuthenticatedSellerEarningsRoute
+  '/seller/listings': typeof AuthenticatedSellerListingsRoute
+  '/seller/messages': typeof AuthenticatedSellerMessagesRoute
+  '/seller/notifications': typeof AuthenticatedSellerNotificationsRoute
+  '/seller/orders': typeof AuthenticatedSellerOrdersRoute
+  '/seller/reviews': typeof AuthenticatedSellerReviewsRoute
+  '/seller/security': typeof AuthenticatedSellerSecurityRoute
+  '/seller/settings': typeof AuthenticatedSellerSettingsRoute
+  '/seller/store': typeof AuthenticatedSellerStoreRoute
+  '/seller/subscription': typeof AuthenticatedSellerSubscriptionRoute
+  '/seller/support': typeof AuthenticatedSellerSupportRoute
+  '/seller/transactions': typeof AuthenticatedSellerTransactionsRoute
+  '/seller/verification': typeof AuthenticatedSellerVerificationRoute
+  '/seller/wallet': typeof AuthenticatedSellerWalletRoute
+  '/seller/withdrawals': typeof AuthenticatedSellerWithdrawalsRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/seller/': typeof AuthenticatedSellerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/account': typeof AccountRouteWithChildren
-  '/auth': typeof AuthRouteWithChildren
+  '/account': typeof AccountRoute
+  '/blog': typeof BlogRoute
+  '/careers': typeof CareersRoute
+  '/categories': typeof CategoriesRoute
   '/contact': typeof ContactRoute
-  '/marketplace': typeof MarketplaceRoute
-  '/sell': typeof SellRoute
-  '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/diagnostics': typeof AdminDiagnosticsRoute
-  '/admin/kyc': typeof AdminKycRoute
-  '/admin/moderation': typeof AdminModerationRoute
-  '/admin/orders': typeof AdminOrdersRouteWithChildren
-  '/admin/payments': typeof AdminPaymentsRoute
-  '/api/contact': typeof ApiContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/orders': typeof OrdersRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/seller-panel': typeof SellerPanelRoute
+  '/signup': typeof SignupRoute
+  '/terms': typeof TermsRoute
+  '/verify-email': typeof VerifyEmailRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/auth/verified': typeof AuthVerifiedRoute
   '/category/$slug': typeof CategorySlugRoute
-  '/legal/disclaimer': typeof LegalDisclaimerRoute
-  '/legal/privacy': typeof LegalPrivacyRoute
-  '/legal/refund': typeof LegalRefundRoute
-  '/legal/seller-agreement': typeof LegalSellerAgreementRoute
-  '/legal/terms': typeof LegalTermsRoute
-  '/listing/$slug': typeof ListingSlugRoute
-  '/messages/$conversationId': typeof MessagesConversationIdRoute
-  '/seller/$username': typeof SellerUsernameRoute
-  '/seller/kyc': typeof SellerKycRoute
-  '/seller/new': typeof SellerNewRoute
-  '/seller/orders': typeof SellerOrdersRoute
-  '/seller/plans': typeof SellerPlansRoute
-  '/admin': typeof AdminIndexRoute
-  '/messages': typeof MessagesIndexRoute
-  '/seller': typeof SellerIndexRoute
-  '/account/orders/$orderId': typeof AccountOrdersOrderIdRoute
-  '/admin/orders/$orderId': typeof AdminOrdersOrderIdRoute
-  '/api/otp/send': typeof ApiOtpSendRoute
-  '/api/otp/verify': typeof ApiOtpVerifyRoute
-  '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
-  '/api/razorpay/config': typeof ApiRazorpayConfigRoute
-  '/api/razorpay/create': typeof ApiRazorpayCreateRoute
-  '/api/razorpay/verify': typeof ApiRazorpayVerifyRoute
-  '/api/seller-sub/create': typeof ApiSellerSubCreateRoute
-  '/api/seller-sub/verify': typeof ApiSellerSubVerifyRoute
+  '/product/$id': typeof ProductIdRoute
+  '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/categories': typeof AuthenticatedAdminCategoriesRoute
+  '/admin/disputes': typeof AuthenticatedAdminDisputesRoute
+  '/admin/listings': typeof AuthenticatedAdminListingsRoute
+  '/admin/payments': typeof AuthenticatedAdminPaymentsRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/checkout/verify-payment': typeof AuthenticatedCheckoutVerifyPaymentRoute
+  '/seller/ads': typeof AuthenticatedSellerAdsRoute
+  '/seller/analytics': typeof AuthenticatedSellerAnalyticsRoute
+  '/seller/boosts': typeof AuthenticatedSellerBoostsRoute
+  '/seller/coupons': typeof AuthenticatedSellerCouponsRoute
+  '/seller/delivery': typeof AuthenticatedSellerDeliveryRoute
+  '/seller/disputes': typeof AuthenticatedSellerDisputesRoute
+  '/seller/earnings': typeof AuthenticatedSellerEarningsRoute
+  '/seller/listings': typeof AuthenticatedSellerListingsRoute
+  '/seller/messages': typeof AuthenticatedSellerMessagesRoute
+  '/seller/notifications': typeof AuthenticatedSellerNotificationsRoute
+  '/seller/orders': typeof AuthenticatedSellerOrdersRoute
+  '/seller/reviews': typeof AuthenticatedSellerReviewsRoute
+  '/seller/security': typeof AuthenticatedSellerSecurityRoute
+  '/seller/settings': typeof AuthenticatedSellerSettingsRoute
+  '/seller/store': typeof AuthenticatedSellerStoreRoute
+  '/seller/subscription': typeof AuthenticatedSellerSubscriptionRoute
+  '/seller/support': typeof AuthenticatedSellerSupportRoute
+  '/seller/transactions': typeof AuthenticatedSellerTransactionsRoute
+  '/seller/verification': typeof AuthenticatedSellerVerificationRoute
+  '/seller/wallet': typeof AuthenticatedSellerWalletRoute
+  '/seller/withdrawals': typeof AuthenticatedSellerWithdrawalsRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/seller': typeof AuthenticatedSellerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/about': typeof AboutRoute
-  '/account': typeof AccountRouteWithChildren
-  '/admin': typeof AdminRouteWithChildren
-  '/auth': typeof AuthRouteWithChildren
+  '/account': typeof AccountRoute
+  '/blog': typeof BlogRoute
+  '/careers': typeof CareersRoute
+  '/categories': typeof CategoriesRoute
   '/contact': typeof ContactRoute
-  '/marketplace': typeof MarketplaceRoute
-  '/messages': typeof MessagesRouteWithChildren
-  '/sell': typeof SellRoute
-  '/seller': typeof SellerRouteWithChildren
-  '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/diagnostics': typeof AdminDiagnosticsRoute
-  '/admin/kyc': typeof AdminKycRoute
-  '/admin/moderation': typeof AdminModerationRoute
-  '/admin/orders': typeof AdminOrdersRouteWithChildren
-  '/admin/payments': typeof AdminPaymentsRoute
-  '/api/contact': typeof ApiContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/login': typeof LoginRoute
+  '/orders': typeof OrdersRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/seller-panel': typeof SellerPanelRoute
+  '/signup': typeof SignupRoute
+  '/terms': typeof TermsRoute
+  '/verify-email': typeof VerifyEmailRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/seller': typeof AuthenticatedSellerRouteWithChildren
   '/auth/callback': typeof AuthCallbackRoute
+  '/auth/verified': typeof AuthVerifiedRoute
   '/category/$slug': typeof CategorySlugRoute
-  '/legal/disclaimer': typeof LegalDisclaimerRoute
-  '/legal/privacy': typeof LegalPrivacyRoute
-  '/legal/refund': typeof LegalRefundRoute
-  '/legal/seller-agreement': typeof LegalSellerAgreementRoute
-  '/legal/terms': typeof LegalTermsRoute
-  '/listing/$slug': typeof ListingSlugRoute
-  '/messages/$conversationId': typeof MessagesConversationIdRoute
-  '/seller/$username': typeof SellerUsernameRoute
-  '/seller/kyc': typeof SellerKycRoute
-  '/seller/new': typeof SellerNewRoute
-  '/seller/orders': typeof SellerOrdersRoute
-  '/seller/plans': typeof SellerPlansRoute
-  '/admin/': typeof AdminIndexRoute
-  '/messages/': typeof MessagesIndexRoute
-  '/seller/': typeof SellerIndexRoute
-  '/account/orders/$orderId': typeof AccountOrdersOrderIdRoute
-  '/admin/orders/$orderId': typeof AdminOrdersOrderIdRoute
-  '/api/otp/send': typeof ApiOtpSendRoute
-  '/api/otp/verify': typeof ApiOtpVerifyRoute
-  '/api/public/razorpay-webhook': typeof ApiPublicRazorpayWebhookRoute
-  '/api/razorpay/config': typeof ApiRazorpayConfigRoute
-  '/api/razorpay/create': typeof ApiRazorpayCreateRoute
-  '/api/razorpay/verify': typeof ApiRazorpayVerifyRoute
-  '/api/seller-sub/create': typeof ApiSellerSubCreateRoute
-  '/api/seller-sub/verify': typeof ApiSellerSubVerifyRoute
+  '/product/$id': typeof ProductIdRoute
+  '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/_authenticated/admin/categories': typeof AuthenticatedAdminCategoriesRoute
+  '/_authenticated/admin/disputes': typeof AuthenticatedAdminDisputesRoute
+  '/_authenticated/admin/listings': typeof AuthenticatedAdminListingsRoute
+  '/_authenticated/admin/payments': typeof AuthenticatedAdminPaymentsRoute
+  '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/_authenticated/checkout/verify-payment': typeof AuthenticatedCheckoutVerifyPaymentRoute
+  '/_authenticated/seller/ads': typeof AuthenticatedSellerAdsRoute
+  '/_authenticated/seller/analytics': typeof AuthenticatedSellerAnalyticsRoute
+  '/_authenticated/seller/boosts': typeof AuthenticatedSellerBoostsRoute
+  '/_authenticated/seller/coupons': typeof AuthenticatedSellerCouponsRoute
+  '/_authenticated/seller/delivery': typeof AuthenticatedSellerDeliveryRoute
+  '/_authenticated/seller/disputes': typeof AuthenticatedSellerDisputesRoute
+  '/_authenticated/seller/earnings': typeof AuthenticatedSellerEarningsRoute
+  '/_authenticated/seller/listings': typeof AuthenticatedSellerListingsRoute
+  '/_authenticated/seller/messages': typeof AuthenticatedSellerMessagesRoute
+  '/_authenticated/seller/notifications': typeof AuthenticatedSellerNotificationsRoute
+  '/_authenticated/seller/orders': typeof AuthenticatedSellerOrdersRoute
+  '/_authenticated/seller/reviews': typeof AuthenticatedSellerReviewsRoute
+  '/_authenticated/seller/security': typeof AuthenticatedSellerSecurityRoute
+  '/_authenticated/seller/settings': typeof AuthenticatedSellerSettingsRoute
+  '/_authenticated/seller/store': typeof AuthenticatedSellerStoreRoute
+  '/_authenticated/seller/subscription': typeof AuthenticatedSellerSubscriptionRoute
+  '/_authenticated/seller/support': typeof AuthenticatedSellerSupportRoute
+  '/_authenticated/seller/transactions': typeof AuthenticatedSellerTransactionsRoute
+  '/_authenticated/seller/verification': typeof AuthenticatedSellerVerificationRoute
+  '/_authenticated/seller/wallet': typeof AuthenticatedSellerWalletRoute
+  '/_authenticated/seller/withdrawals': typeof AuthenticatedSellerWithdrawalsRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/seller/': typeof AuthenticatedSellerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -418,195 +570,290 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/account'
-    | '/admin'
-    | '/auth'
+    | '/blog'
+    | '/careers'
+    | '/categories'
     | '/contact'
-    | '/marketplace'
-    | '/messages'
-    | '/sell'
+    | '/dashboard'
+    | '/forgot-password'
+    | '/how-it-works'
+    | '/login'
+    | '/orders'
+    | '/privacy'
+    | '/refund-policy'
+    | '/reset-password'
+    | '/seller-panel'
+    | '/signup'
+    | '/terms'
+    | '/verify-email'
+    | '/admin'
     | '/seller'
-    | '/admin/analytics'
-    | '/admin/diagnostics'
-    | '/admin/kyc'
-    | '/admin/moderation'
-    | '/admin/orders'
-    | '/admin/payments'
-    | '/api/contact'
     | '/auth/callback'
+    | '/auth/verified'
     | '/category/$slug'
-    | '/legal/disclaimer'
-    | '/legal/privacy'
-    | '/legal/refund'
-    | '/legal/seller-agreement'
-    | '/legal/terms'
-    | '/listing/$slug'
-    | '/messages/$conversationId'
-    | '/seller/$username'
-    | '/seller/kyc'
-    | '/seller/new'
+    | '/product/$id'
+    | '/admin/analytics'
+    | '/admin/categories'
+    | '/admin/disputes'
+    | '/admin/listings'
+    | '/admin/payments'
+    | '/admin/reports'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/checkout/verify-payment'
+    | '/seller/ads'
+    | '/seller/analytics'
+    | '/seller/boosts'
+    | '/seller/coupons'
+    | '/seller/delivery'
+    | '/seller/disputes'
+    | '/seller/earnings'
+    | '/seller/listings'
+    | '/seller/messages'
+    | '/seller/notifications'
     | '/seller/orders'
-    | '/seller/plans'
+    | '/seller/reviews'
+    | '/seller/security'
+    | '/seller/settings'
+    | '/seller/store'
+    | '/seller/subscription'
+    | '/seller/support'
+    | '/seller/transactions'
+    | '/seller/verification'
+    | '/seller/wallet'
+    | '/seller/withdrawals'
     | '/admin/'
-    | '/messages/'
     | '/seller/'
-    | '/account/orders/$orderId'
-    | '/admin/orders/$orderId'
-    | '/api/otp/send'
-    | '/api/otp/verify'
-    | '/api/public/razorpay-webhook'
-    | '/api/razorpay/config'
-    | '/api/razorpay/create'
-    | '/api/razorpay/verify'
-    | '/api/seller-sub/create'
-    | '/api/seller-sub/verify'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/account'
-    | '/auth'
+    | '/blog'
+    | '/careers'
+    | '/categories'
     | '/contact'
-    | '/marketplace'
-    | '/sell'
-    | '/admin/analytics'
-    | '/admin/diagnostics'
-    | '/admin/kyc'
-    | '/admin/moderation'
-    | '/admin/orders'
-    | '/admin/payments'
-    | '/api/contact'
+    | '/dashboard'
+    | '/forgot-password'
+    | '/how-it-works'
+    | '/login'
+    | '/orders'
+    | '/privacy'
+    | '/refund-policy'
+    | '/reset-password'
+    | '/seller-panel'
+    | '/signup'
+    | '/terms'
+    | '/verify-email'
     | '/auth/callback'
+    | '/auth/verified'
     | '/category/$slug'
-    | '/legal/disclaimer'
-    | '/legal/privacy'
-    | '/legal/refund'
-    | '/legal/seller-agreement'
-    | '/legal/terms'
-    | '/listing/$slug'
-    | '/messages/$conversationId'
-    | '/seller/$username'
-    | '/seller/kyc'
-    | '/seller/new'
+    | '/product/$id'
+    | '/admin/analytics'
+    | '/admin/categories'
+    | '/admin/disputes'
+    | '/admin/listings'
+    | '/admin/payments'
+    | '/admin/reports'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/checkout/verify-payment'
+    | '/seller/ads'
+    | '/seller/analytics'
+    | '/seller/boosts'
+    | '/seller/coupons'
+    | '/seller/delivery'
+    | '/seller/disputes'
+    | '/seller/earnings'
+    | '/seller/listings'
+    | '/seller/messages'
+    | '/seller/notifications'
     | '/seller/orders'
-    | '/seller/plans'
+    | '/seller/reviews'
+    | '/seller/security'
+    | '/seller/settings'
+    | '/seller/store'
+    | '/seller/subscription'
+    | '/seller/support'
+    | '/seller/transactions'
+    | '/seller/verification'
+    | '/seller/wallet'
+    | '/seller/withdrawals'
     | '/admin'
-    | '/messages'
     | '/seller'
-    | '/account/orders/$orderId'
-    | '/admin/orders/$orderId'
-    | '/api/otp/send'
-    | '/api/otp/verify'
-    | '/api/public/razorpay-webhook'
-    | '/api/razorpay/config'
-    | '/api/razorpay/create'
-    | '/api/razorpay/verify'
-    | '/api/seller-sub/create'
-    | '/api/seller-sub/verify'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/about'
     | '/account'
-    | '/admin'
-    | '/auth'
+    | '/blog'
+    | '/careers'
+    | '/categories'
     | '/contact'
-    | '/marketplace'
-    | '/messages'
-    | '/sell'
-    | '/seller'
-    | '/admin/analytics'
-    | '/admin/diagnostics'
-    | '/admin/kyc'
-    | '/admin/moderation'
-    | '/admin/orders'
-    | '/admin/payments'
-    | '/api/contact'
+    | '/dashboard'
+    | '/forgot-password'
+    | '/how-it-works'
+    | '/login'
+    | '/orders'
+    | '/privacy'
+    | '/refund-policy'
+    | '/reset-password'
+    | '/seller-panel'
+    | '/signup'
+    | '/terms'
+    | '/verify-email'
+    | '/_authenticated/admin'
+    | '/_authenticated/seller'
     | '/auth/callback'
+    | '/auth/verified'
     | '/category/$slug'
-    | '/legal/disclaimer'
-    | '/legal/privacy'
-    | '/legal/refund'
-    | '/legal/seller-agreement'
-    | '/legal/terms'
-    | '/listing/$slug'
-    | '/messages/$conversationId'
-    | '/seller/$username'
-    | '/seller/kyc'
-    | '/seller/new'
-    | '/seller/orders'
-    | '/seller/plans'
-    | '/admin/'
-    | '/messages/'
-    | '/seller/'
-    | '/account/orders/$orderId'
-    | '/admin/orders/$orderId'
-    | '/api/otp/send'
-    | '/api/otp/verify'
-    | '/api/public/razorpay-webhook'
-    | '/api/razorpay/config'
-    | '/api/razorpay/create'
-    | '/api/razorpay/verify'
-    | '/api/seller-sub/create'
-    | '/api/seller-sub/verify'
+    | '/product/$id'
+    | '/_authenticated/admin/analytics'
+    | '/_authenticated/admin/categories'
+    | '/_authenticated/admin/disputes'
+    | '/_authenticated/admin/listings'
+    | '/_authenticated/admin/payments'
+    | '/_authenticated/admin/reports'
+    | '/_authenticated/admin/settings'
+    | '/_authenticated/admin/users'
+    | '/_authenticated/checkout/verify-payment'
+    | '/_authenticated/seller/ads'
+    | '/_authenticated/seller/analytics'
+    | '/_authenticated/seller/boosts'
+    | '/_authenticated/seller/coupons'
+    | '/_authenticated/seller/delivery'
+    | '/_authenticated/seller/disputes'
+    | '/_authenticated/seller/earnings'
+    | '/_authenticated/seller/listings'
+    | '/_authenticated/seller/messages'
+    | '/_authenticated/seller/notifications'
+    | '/_authenticated/seller/orders'
+    | '/_authenticated/seller/reviews'
+    | '/_authenticated/seller/security'
+    | '/_authenticated/seller/settings'
+    | '/_authenticated/seller/store'
+    | '/_authenticated/seller/subscription'
+    | '/_authenticated/seller/support'
+    | '/_authenticated/seller/transactions'
+    | '/_authenticated/seller/verification'
+    | '/_authenticated/seller/wallet'
+    | '/_authenticated/seller/withdrawals'
+    | '/_authenticated/admin/'
+    | '/_authenticated/seller/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AboutRoute: typeof AboutRoute
-  AccountRoute: typeof AccountRouteWithChildren
-  AdminRoute: typeof AdminRouteWithChildren
-  AuthRoute: typeof AuthRouteWithChildren
+  AccountRoute: typeof AccountRoute
+  BlogRoute: typeof BlogRoute
+  CareersRoute: typeof CareersRoute
+  CategoriesRoute: typeof CategoriesRoute
   ContactRoute: typeof ContactRoute
-  MarketplaceRoute: typeof MarketplaceRoute
-  MessagesRoute: typeof MessagesRouteWithChildren
-  SellRoute: typeof SellRoute
-  SellerRoute: typeof SellerRouteWithChildren
-  ApiContactRoute: typeof ApiContactRoute
+  DashboardRoute: typeof DashboardRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  LoginRoute: typeof LoginRoute
+  OrdersRoute: typeof OrdersRoute
+  PrivacyRoute: typeof PrivacyRoute
+  RefundPolicyRoute: typeof RefundPolicyRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  SellerPanelRoute: typeof SellerPanelRoute
+  SignupRoute: typeof SignupRoute
+  TermsRoute: typeof TermsRoute
+  VerifyEmailRoute: typeof VerifyEmailRoute
+  AuthCallbackRoute: typeof AuthCallbackRoute
+  AuthVerifiedRoute: typeof AuthVerifiedRoute
   CategorySlugRoute: typeof CategorySlugRoute
-  LegalDisclaimerRoute: typeof LegalDisclaimerRoute
-  LegalPrivacyRoute: typeof LegalPrivacyRoute
-  LegalRefundRoute: typeof LegalRefundRoute
-  LegalSellerAgreementRoute: typeof LegalSellerAgreementRoute
-  LegalTermsRoute: typeof LegalTermsRoute
-  ListingSlugRoute: typeof ListingSlugRoute
-  ApiOtpSendRoute: typeof ApiOtpSendRoute
-  ApiOtpVerifyRoute: typeof ApiOtpVerifyRoute
-  ApiPublicRazorpayWebhookRoute: typeof ApiPublicRazorpayWebhookRoute
-  ApiRazorpayConfigRoute: typeof ApiRazorpayConfigRoute
-  ApiRazorpayCreateRoute: typeof ApiRazorpayCreateRoute
-  ApiRazorpayVerifyRoute: typeof ApiRazorpayVerifyRoute
-  ApiSellerSubCreateRoute: typeof ApiSellerSubCreateRoute
-  ApiSellerSubVerifyRoute: typeof ApiSellerSubVerifyRoute
+  ProductIdRoute: typeof ProductIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/seller': {
-      id: '/seller'
-      path: '/seller'
-      fullPath: '/seller'
-      preLoaderRoute: typeof SellerRouteImport
+    '/verify-email': {
+      id: '/verify-email'
+      path: '/verify-email'
+      fullPath: '/verify-email'
+      preLoaderRoute: typeof VerifyEmailRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sell': {
-      id: '/sell'
-      path: '/sell'
-      fullPath: '/sell'
-      preLoaderRoute: typeof SellRouteImport
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/messages': {
-      id: '/messages'
-      path: '/messages'
-      fullPath: '/messages'
-      preLoaderRoute: typeof MessagesRouteImport
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/marketplace': {
-      id: '/marketplace'
-      path: '/marketplace'
-      fullPath: '/marketplace'
-      preLoaderRoute: typeof MarketplaceRouteImport
+    '/seller-panel': {
+      id: '/seller-panel'
+      path: '/seller-panel'
+      fullPath: '/seller-panel'
+      preLoaderRoute: typeof SellerPanelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders': {
+      id: '/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof OrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -616,18 +863,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
+    '/categories': {
+      id: '/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof CategoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/account': {
@@ -644,6 +898,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -651,109 +912,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/seller/': {
-      id: '/seller/'
-      path: '/'
-      fullPath: '/seller/'
-      preLoaderRoute: typeof SellerIndexRouteImport
-      parentRoute: typeof SellerRoute
-    }
-    '/messages/': {
-      id: '/messages/'
-      path: '/'
-      fullPath: '/messages/'
-      preLoaderRoute: typeof MessagesIndexRouteImport
-      parentRoute: typeof MessagesRoute
-    }
-    '/admin/': {
-      id: '/admin/'
-      path: '/'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/seller/plans': {
-      id: '/seller/plans'
-      path: '/plans'
-      fullPath: '/seller/plans'
-      preLoaderRoute: typeof SellerPlansRouteImport
-      parentRoute: typeof SellerRoute
-    }
-    '/seller/orders': {
-      id: '/seller/orders'
-      path: '/orders'
-      fullPath: '/seller/orders'
-      preLoaderRoute: typeof SellerOrdersRouteImport
-      parentRoute: typeof SellerRoute
-    }
-    '/seller/new': {
-      id: '/seller/new'
-      path: '/new'
-      fullPath: '/seller/new'
-      preLoaderRoute: typeof SellerNewRouteImport
-      parentRoute: typeof SellerRoute
-    }
-    '/seller/kyc': {
-      id: '/seller/kyc'
-      path: '/kyc'
-      fullPath: '/seller/kyc'
-      preLoaderRoute: typeof SellerKycRouteImport
-      parentRoute: typeof SellerRoute
-    }
-    '/seller/$username': {
-      id: '/seller/$username'
-      path: '/$username'
-      fullPath: '/seller/$username'
-      preLoaderRoute: typeof SellerUsernameRouteImport
-      parentRoute: typeof SellerRoute
-    }
-    '/messages/$conversationId': {
-      id: '/messages/$conversationId'
-      path: '/$conversationId'
-      fullPath: '/messages/$conversationId'
-      preLoaderRoute: typeof MessagesConversationIdRouteImport
-      parentRoute: typeof MessagesRoute
-    }
-    '/listing/$slug': {
-      id: '/listing/$slug'
-      path: '/listing/$slug'
-      fullPath: '/listing/$slug'
-      preLoaderRoute: typeof ListingSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/terms': {
-      id: '/legal/terms'
-      path: '/legal/terms'
-      fullPath: '/legal/terms'
-      preLoaderRoute: typeof LegalTermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/seller-agreement': {
-      id: '/legal/seller-agreement'
-      path: '/legal/seller-agreement'
-      fullPath: '/legal/seller-agreement'
-      preLoaderRoute: typeof LegalSellerAgreementRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/refund': {
-      id: '/legal/refund'
-      path: '/legal/refund'
-      fullPath: '/legal/refund'
-      preLoaderRoute: typeof LegalRefundRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/privacy': {
-      id: '/legal/privacy'
-      path: '/legal/privacy'
-      fullPath: '/legal/privacy'
-      preLoaderRoute: typeof LegalPrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/disclaimer': {
-      id: '/legal/disclaimer'
-      path: '/legal/disclaimer'
-      fullPath: '/legal/disclaimer'
-      preLoaderRoute: typeof LegalDisclaimerRouteImport
+    '/product/$id': {
+      id: '/product/$id'
+      path: '/product/$id'
+      fullPath: '/product/$id'
+      preLoaderRoute: typeof ProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/category/$slug': {
@@ -763,262 +926,394 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategorySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/verified': {
+      id: '/auth/verified'
+      path: '/auth/verified'
+      fullPath: '/auth/verified'
+      preLoaderRoute: typeof AuthVerifiedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth/callback': {
       id: '/auth/callback'
-      path: '/callback'
+      path: '/auth/callback'
       fullPath: '/auth/callback'
       preLoaderRoute: typeof AuthCallbackRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/api/contact': {
-      id: '/api/contact'
-      path: '/api/contact'
-      fullPath: '/api/contact'
-      preLoaderRoute: typeof ApiContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/payments': {
-      id: '/admin/payments'
+    '/_authenticated/seller': {
+      id: '/_authenticated/seller'
+      path: '/seller'
+      fullPath: '/seller'
+      preLoaderRoute: typeof AuthenticatedSellerRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/seller/': {
+      id: '/_authenticated/seller/'
+      path: '/'
+      fullPath: '/seller/'
+      preLoaderRoute: typeof AuthenticatedSellerIndexRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/seller/withdrawals': {
+      id: '/_authenticated/seller/withdrawals'
+      path: '/withdrawals'
+      fullPath: '/seller/withdrawals'
+      preLoaderRoute: typeof AuthenticatedSellerWithdrawalsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/wallet': {
+      id: '/_authenticated/seller/wallet'
+      path: '/wallet'
+      fullPath: '/seller/wallet'
+      preLoaderRoute: typeof AuthenticatedSellerWalletRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/verification': {
+      id: '/_authenticated/seller/verification'
+      path: '/verification'
+      fullPath: '/seller/verification'
+      preLoaderRoute: typeof AuthenticatedSellerVerificationRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/transactions': {
+      id: '/_authenticated/seller/transactions'
+      path: '/transactions'
+      fullPath: '/seller/transactions'
+      preLoaderRoute: typeof AuthenticatedSellerTransactionsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/support': {
+      id: '/_authenticated/seller/support'
+      path: '/support'
+      fullPath: '/seller/support'
+      preLoaderRoute: typeof AuthenticatedSellerSupportRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/subscription': {
+      id: '/_authenticated/seller/subscription'
+      path: '/subscription'
+      fullPath: '/seller/subscription'
+      preLoaderRoute: typeof AuthenticatedSellerSubscriptionRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/store': {
+      id: '/_authenticated/seller/store'
+      path: '/store'
+      fullPath: '/seller/store'
+      preLoaderRoute: typeof AuthenticatedSellerStoreRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/settings': {
+      id: '/_authenticated/seller/settings'
+      path: '/settings'
+      fullPath: '/seller/settings'
+      preLoaderRoute: typeof AuthenticatedSellerSettingsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/security': {
+      id: '/_authenticated/seller/security'
+      path: '/security'
+      fullPath: '/seller/security'
+      preLoaderRoute: typeof AuthenticatedSellerSecurityRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/reviews': {
+      id: '/_authenticated/seller/reviews'
+      path: '/reviews'
+      fullPath: '/seller/reviews'
+      preLoaderRoute: typeof AuthenticatedSellerReviewsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/orders': {
+      id: '/_authenticated/seller/orders'
+      path: '/orders'
+      fullPath: '/seller/orders'
+      preLoaderRoute: typeof AuthenticatedSellerOrdersRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/notifications': {
+      id: '/_authenticated/seller/notifications'
+      path: '/notifications'
+      fullPath: '/seller/notifications'
+      preLoaderRoute: typeof AuthenticatedSellerNotificationsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/messages': {
+      id: '/_authenticated/seller/messages'
+      path: '/messages'
+      fullPath: '/seller/messages'
+      preLoaderRoute: typeof AuthenticatedSellerMessagesRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/listings': {
+      id: '/_authenticated/seller/listings'
+      path: '/listings'
+      fullPath: '/seller/listings'
+      preLoaderRoute: typeof AuthenticatedSellerListingsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/earnings': {
+      id: '/_authenticated/seller/earnings'
+      path: '/earnings'
+      fullPath: '/seller/earnings'
+      preLoaderRoute: typeof AuthenticatedSellerEarningsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/disputes': {
+      id: '/_authenticated/seller/disputes'
+      path: '/disputes'
+      fullPath: '/seller/disputes'
+      preLoaderRoute: typeof AuthenticatedSellerDisputesRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/delivery': {
+      id: '/_authenticated/seller/delivery'
+      path: '/delivery'
+      fullPath: '/seller/delivery'
+      preLoaderRoute: typeof AuthenticatedSellerDeliveryRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/coupons': {
+      id: '/_authenticated/seller/coupons'
+      path: '/coupons'
+      fullPath: '/seller/coupons'
+      preLoaderRoute: typeof AuthenticatedSellerCouponsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/boosts': {
+      id: '/_authenticated/seller/boosts'
+      path: '/boosts'
+      fullPath: '/seller/boosts'
+      preLoaderRoute: typeof AuthenticatedSellerBoostsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/analytics': {
+      id: '/_authenticated/seller/analytics'
+      path: '/analytics'
+      fullPath: '/seller/analytics'
+      preLoaderRoute: typeof AuthenticatedSellerAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/seller/ads': {
+      id: '/_authenticated/seller/ads'
+      path: '/ads'
+      fullPath: '/seller/ads'
+      preLoaderRoute: typeof AuthenticatedSellerAdsRouteImport
+      parentRoute: typeof AuthenticatedSellerRoute
+    }
+    '/_authenticated/checkout/verify-payment': {
+      id: '/_authenticated/checkout/verify-payment'
+      path: '/checkout/verify-payment'
+      fullPath: '/checkout/verify-payment'
+      preLoaderRoute: typeof AuthenticatedCheckoutVerifyPaymentRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin/users': {
+      id: '/_authenticated/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/settings': {
+      id: '/_authenticated/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AuthenticatedAdminSettingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/reports': {
+      id: '/_authenticated/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AuthenticatedAdminReportsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/payments': {
+      id: '/_authenticated/admin/payments'
       path: '/payments'
       fullPath: '/admin/payments'
-      preLoaderRoute: typeof AdminPaymentsRouteImport
-      parentRoute: typeof AdminRoute
+      preLoaderRoute: typeof AuthenticatedAdminPaymentsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/orders': {
-      id: '/admin/orders'
-      path: '/orders'
-      fullPath: '/admin/orders'
-      preLoaderRoute: typeof AdminOrdersRouteImport
-      parentRoute: typeof AdminRoute
+    '/_authenticated/admin/listings': {
+      id: '/_authenticated/admin/listings'
+      path: '/listings'
+      fullPath: '/admin/listings'
+      preLoaderRoute: typeof AuthenticatedAdminListingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/moderation': {
-      id: '/admin/moderation'
-      path: '/moderation'
-      fullPath: '/admin/moderation'
-      preLoaderRoute: typeof AdminModerationRouteImport
-      parentRoute: typeof AdminRoute
+    '/_authenticated/admin/disputes': {
+      id: '/_authenticated/admin/disputes'
+      path: '/disputes'
+      fullPath: '/admin/disputes'
+      preLoaderRoute: typeof AuthenticatedAdminDisputesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/kyc': {
-      id: '/admin/kyc'
-      path: '/kyc'
-      fullPath: '/admin/kyc'
-      preLoaderRoute: typeof AdminKycRouteImport
-      parentRoute: typeof AdminRoute
+    '/_authenticated/admin/categories': {
+      id: '/_authenticated/admin/categories'
+      path: '/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AuthenticatedAdminCategoriesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/diagnostics': {
-      id: '/admin/diagnostics'
-      path: '/diagnostics'
-      fullPath: '/admin/diagnostics'
-      preLoaderRoute: typeof AdminDiagnosticsRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/analytics': {
-      id: '/admin/analytics'
+    '/_authenticated/admin/analytics': {
+      id: '/_authenticated/admin/analytics'
       path: '/analytics'
       fullPath: '/admin/analytics'
-      preLoaderRoute: typeof AdminAnalyticsRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/api/seller-sub/verify': {
-      id: '/api/seller-sub/verify'
-      path: '/api/seller-sub/verify'
-      fullPath: '/api/seller-sub/verify'
-      preLoaderRoute: typeof ApiSellerSubVerifyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/seller-sub/create': {
-      id: '/api/seller-sub/create'
-      path: '/api/seller-sub/create'
-      fullPath: '/api/seller-sub/create'
-      preLoaderRoute: typeof ApiSellerSubCreateRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/razorpay/verify': {
-      id: '/api/razorpay/verify'
-      path: '/api/razorpay/verify'
-      fullPath: '/api/razorpay/verify'
-      preLoaderRoute: typeof ApiRazorpayVerifyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/razorpay/create': {
-      id: '/api/razorpay/create'
-      path: '/api/razorpay/create'
-      fullPath: '/api/razorpay/create'
-      preLoaderRoute: typeof ApiRazorpayCreateRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/razorpay/config': {
-      id: '/api/razorpay/config'
-      path: '/api/razorpay/config'
-      fullPath: '/api/razorpay/config'
-      preLoaderRoute: typeof ApiRazorpayConfigRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/razorpay-webhook': {
-      id: '/api/public/razorpay-webhook'
-      path: '/api/public/razorpay-webhook'
-      fullPath: '/api/public/razorpay-webhook'
-      preLoaderRoute: typeof ApiPublicRazorpayWebhookRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/otp/verify': {
-      id: '/api/otp/verify'
-      path: '/api/otp/verify'
-      fullPath: '/api/otp/verify'
-      preLoaderRoute: typeof ApiOtpVerifyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/otp/send': {
-      id: '/api/otp/send'
-      path: '/api/otp/send'
-      fullPath: '/api/otp/send'
-      preLoaderRoute: typeof ApiOtpSendRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/orders/$orderId': {
-      id: '/admin/orders/$orderId'
-      path: '/$orderId'
-      fullPath: '/admin/orders/$orderId'
-      preLoaderRoute: typeof AdminOrdersOrderIdRouteImport
-      parentRoute: typeof AdminOrdersRoute
-    }
-    '/account/orders/$orderId': {
-      id: '/account/orders/$orderId'
-      path: '/orders/$orderId'
-      fullPath: '/account/orders/$orderId'
-      preLoaderRoute: typeof AccountOrdersOrderIdRouteImport
-      parentRoute: typeof AccountRoute
+      preLoaderRoute: typeof AuthenticatedAdminAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
   }
 }
 
-interface AccountRouteChildren {
-  AccountOrdersOrderIdRoute: typeof AccountOrdersOrderIdRoute
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
+  AuthenticatedAdminCategoriesRoute: typeof AuthenticatedAdminCategoriesRoute
+  AuthenticatedAdminDisputesRoute: typeof AuthenticatedAdminDisputesRoute
+  AuthenticatedAdminListingsRoute: typeof AuthenticatedAdminListingsRoute
+  AuthenticatedAdminPaymentsRoute: typeof AuthenticatedAdminPaymentsRoute
+  AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
+  AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
+  AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
-const AccountRouteChildren: AccountRouteChildren = {
-  AccountOrdersOrderIdRoute: AccountOrdersOrderIdRoute,
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
+  AuthenticatedAdminCategoriesRoute: AuthenticatedAdminCategoriesRoute,
+  AuthenticatedAdminDisputesRoute: AuthenticatedAdminDisputesRoute,
+  AuthenticatedAdminListingsRoute: AuthenticatedAdminListingsRoute,
+  AuthenticatedAdminPaymentsRoute: AuthenticatedAdminPaymentsRoute,
+  AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
+  AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
+  AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
-const AccountRouteWithChildren =
-  AccountRoute._addFileChildren(AccountRouteChildren)
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
 
-interface AdminOrdersRouteChildren {
-  AdminOrdersOrderIdRoute: typeof AdminOrdersOrderIdRoute
+interface AuthenticatedSellerRouteChildren {
+  AuthenticatedSellerAdsRoute: typeof AuthenticatedSellerAdsRoute
+  AuthenticatedSellerAnalyticsRoute: typeof AuthenticatedSellerAnalyticsRoute
+  AuthenticatedSellerBoostsRoute: typeof AuthenticatedSellerBoostsRoute
+  AuthenticatedSellerCouponsRoute: typeof AuthenticatedSellerCouponsRoute
+  AuthenticatedSellerDeliveryRoute: typeof AuthenticatedSellerDeliveryRoute
+  AuthenticatedSellerDisputesRoute: typeof AuthenticatedSellerDisputesRoute
+  AuthenticatedSellerEarningsRoute: typeof AuthenticatedSellerEarningsRoute
+  AuthenticatedSellerListingsRoute: typeof AuthenticatedSellerListingsRoute
+  AuthenticatedSellerMessagesRoute: typeof AuthenticatedSellerMessagesRoute
+  AuthenticatedSellerNotificationsRoute: typeof AuthenticatedSellerNotificationsRoute
+  AuthenticatedSellerOrdersRoute: typeof AuthenticatedSellerOrdersRoute
+  AuthenticatedSellerReviewsRoute: typeof AuthenticatedSellerReviewsRoute
+  AuthenticatedSellerSecurityRoute: typeof AuthenticatedSellerSecurityRoute
+  AuthenticatedSellerSettingsRoute: typeof AuthenticatedSellerSettingsRoute
+  AuthenticatedSellerStoreRoute: typeof AuthenticatedSellerStoreRoute
+  AuthenticatedSellerSubscriptionRoute: typeof AuthenticatedSellerSubscriptionRoute
+  AuthenticatedSellerSupportRoute: typeof AuthenticatedSellerSupportRoute
+  AuthenticatedSellerTransactionsRoute: typeof AuthenticatedSellerTransactionsRoute
+  AuthenticatedSellerVerificationRoute: typeof AuthenticatedSellerVerificationRoute
+  AuthenticatedSellerWalletRoute: typeof AuthenticatedSellerWalletRoute
+  AuthenticatedSellerWithdrawalsRoute: typeof AuthenticatedSellerWithdrawalsRoute
+  AuthenticatedSellerIndexRoute: typeof AuthenticatedSellerIndexRoute
 }
 
-const AdminOrdersRouteChildren: AdminOrdersRouteChildren = {
-  AdminOrdersOrderIdRoute: AdminOrdersOrderIdRoute,
+const AuthenticatedSellerRouteChildren: AuthenticatedSellerRouteChildren = {
+  AuthenticatedSellerAdsRoute: AuthenticatedSellerAdsRoute,
+  AuthenticatedSellerAnalyticsRoute: AuthenticatedSellerAnalyticsRoute,
+  AuthenticatedSellerBoostsRoute: AuthenticatedSellerBoostsRoute,
+  AuthenticatedSellerCouponsRoute: AuthenticatedSellerCouponsRoute,
+  AuthenticatedSellerDeliveryRoute: AuthenticatedSellerDeliveryRoute,
+  AuthenticatedSellerDisputesRoute: AuthenticatedSellerDisputesRoute,
+  AuthenticatedSellerEarningsRoute: AuthenticatedSellerEarningsRoute,
+  AuthenticatedSellerListingsRoute: AuthenticatedSellerListingsRoute,
+  AuthenticatedSellerMessagesRoute: AuthenticatedSellerMessagesRoute,
+  AuthenticatedSellerNotificationsRoute: AuthenticatedSellerNotificationsRoute,
+  AuthenticatedSellerOrdersRoute: AuthenticatedSellerOrdersRoute,
+  AuthenticatedSellerReviewsRoute: AuthenticatedSellerReviewsRoute,
+  AuthenticatedSellerSecurityRoute: AuthenticatedSellerSecurityRoute,
+  AuthenticatedSellerSettingsRoute: AuthenticatedSellerSettingsRoute,
+  AuthenticatedSellerStoreRoute: AuthenticatedSellerStoreRoute,
+  AuthenticatedSellerSubscriptionRoute: AuthenticatedSellerSubscriptionRoute,
+  AuthenticatedSellerSupportRoute: AuthenticatedSellerSupportRoute,
+  AuthenticatedSellerTransactionsRoute: AuthenticatedSellerTransactionsRoute,
+  AuthenticatedSellerVerificationRoute: AuthenticatedSellerVerificationRoute,
+  AuthenticatedSellerWalletRoute: AuthenticatedSellerWalletRoute,
+  AuthenticatedSellerWithdrawalsRoute: AuthenticatedSellerWithdrawalsRoute,
+  AuthenticatedSellerIndexRoute: AuthenticatedSellerIndexRoute,
 }
 
-const AdminOrdersRouteWithChildren = AdminOrdersRoute._addFileChildren(
-  AdminOrdersRouteChildren,
+const AuthenticatedSellerRouteWithChildren =
+  AuthenticatedSellerRoute._addFileChildren(AuthenticatedSellerRouteChildren)
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+  AuthenticatedSellerRoute: typeof AuthenticatedSellerRouteWithChildren
+  AuthenticatedCheckoutVerifyPaymentRoute: typeof AuthenticatedCheckoutVerifyPaymentRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+  AuthenticatedSellerRoute: AuthenticatedSellerRouteWithChildren,
+  AuthenticatedCheckoutVerifyPaymentRoute:
+    AuthenticatedCheckoutVerifyPaymentRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
 )
-
-interface AdminRouteChildren {
-  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
-  AdminDiagnosticsRoute: typeof AdminDiagnosticsRoute
-  AdminKycRoute: typeof AdminKycRoute
-  AdminModerationRoute: typeof AdminModerationRoute
-  AdminOrdersRoute: typeof AdminOrdersRouteWithChildren
-  AdminPaymentsRoute: typeof AdminPaymentsRoute
-  AdminIndexRoute: typeof AdminIndexRoute
-}
-
-const AdminRouteChildren: AdminRouteChildren = {
-  AdminAnalyticsRoute: AdminAnalyticsRoute,
-  AdminDiagnosticsRoute: AdminDiagnosticsRoute,
-  AdminKycRoute: AdminKycRoute,
-  AdminModerationRoute: AdminModerationRoute,
-  AdminOrdersRoute: AdminOrdersRouteWithChildren,
-  AdminPaymentsRoute: AdminPaymentsRoute,
-  AdminIndexRoute: AdminIndexRoute,
-}
-
-const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
-
-interface AuthRouteChildren {
-  AuthCallbackRoute: typeof AuthCallbackRoute
-}
-
-const AuthRouteChildren: AuthRouteChildren = {
-  AuthCallbackRoute: AuthCallbackRoute,
-}
-
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
-
-interface MessagesRouteChildren {
-  MessagesConversationIdRoute: typeof MessagesConversationIdRoute
-  MessagesIndexRoute: typeof MessagesIndexRoute
-}
-
-const MessagesRouteChildren: MessagesRouteChildren = {
-  MessagesConversationIdRoute: MessagesConversationIdRoute,
-  MessagesIndexRoute: MessagesIndexRoute,
-}
-
-const MessagesRouteWithChildren = MessagesRoute._addFileChildren(
-  MessagesRouteChildren,
-)
-
-interface SellerRouteChildren {
-  SellerUsernameRoute: typeof SellerUsernameRoute
-  SellerKycRoute: typeof SellerKycRoute
-  SellerNewRoute: typeof SellerNewRoute
-  SellerOrdersRoute: typeof SellerOrdersRoute
-  SellerPlansRoute: typeof SellerPlansRoute
-  SellerIndexRoute: typeof SellerIndexRoute
-}
-
-const SellerRouteChildren: SellerRouteChildren = {
-  SellerUsernameRoute: SellerUsernameRoute,
-  SellerKycRoute: SellerKycRoute,
-  SellerNewRoute: SellerNewRoute,
-  SellerOrdersRoute: SellerOrdersRoute,
-  SellerPlansRoute: SellerPlansRoute,
-  SellerIndexRoute: SellerIndexRoute,
-}
-
-const SellerRouteWithChildren =
-  SellerRoute._addFileChildren(SellerRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AboutRoute: AboutRoute,
-  AccountRoute: AccountRouteWithChildren,
-  AdminRoute: AdminRouteWithChildren,
-  AuthRoute: AuthRouteWithChildren,
+  AccountRoute: AccountRoute,
+  BlogRoute: BlogRoute,
+  CareersRoute: CareersRoute,
+  CategoriesRoute: CategoriesRoute,
   ContactRoute: ContactRoute,
-  MarketplaceRoute: MarketplaceRoute,
-  MessagesRoute: MessagesRouteWithChildren,
-  SellRoute: SellRoute,
-  SellerRoute: SellerRouteWithChildren,
-  ApiContactRoute: ApiContactRoute,
+  DashboardRoute: DashboardRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  LoginRoute: LoginRoute,
+  OrdersRoute: OrdersRoute,
+  PrivacyRoute: PrivacyRoute,
+  RefundPolicyRoute: RefundPolicyRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  SellerPanelRoute: SellerPanelRoute,
+  SignupRoute: SignupRoute,
+  TermsRoute: TermsRoute,
+  VerifyEmailRoute: VerifyEmailRoute,
+  AuthCallbackRoute: AuthCallbackRoute,
+  AuthVerifiedRoute: AuthVerifiedRoute,
   CategorySlugRoute: CategorySlugRoute,
-  LegalDisclaimerRoute: LegalDisclaimerRoute,
-  LegalPrivacyRoute: LegalPrivacyRoute,
-  LegalRefundRoute: LegalRefundRoute,
-  LegalSellerAgreementRoute: LegalSellerAgreementRoute,
-  LegalTermsRoute: LegalTermsRoute,
-  ListingSlugRoute: ListingSlugRoute,
-  ApiOtpSendRoute: ApiOtpSendRoute,
-  ApiOtpVerifyRoute: ApiOtpVerifyRoute,
-  ApiPublicRazorpayWebhookRoute: ApiPublicRazorpayWebhookRoute,
-  ApiRazorpayConfigRoute: ApiRazorpayConfigRoute,
-  ApiRazorpayCreateRoute: ApiRazorpayCreateRoute,
-  ApiRazorpayVerifyRoute: ApiRazorpayVerifyRoute,
-  ApiSellerSubCreateRoute: ApiSellerSubCreateRoute,
-  ApiSellerSubVerifyRoute: ApiSellerSubVerifyRoute,
+  ProductIdRoute: ProductIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 
 import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
+import type { startInstance } from './start.ts'
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true
     router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
   }
 }
